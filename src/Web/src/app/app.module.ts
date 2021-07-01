@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthorizationComponent } from './shared/pages/authorization/authorization.component';
-import { RegistrationComponent } from './shared/pages/registration/registration.component';
+import { AuthorizationComponent } from './pages/authorization/authorization.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 @NgModule({
   declarations: [
