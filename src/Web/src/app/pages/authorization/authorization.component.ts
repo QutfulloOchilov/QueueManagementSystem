@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authorization.component.scss']
 })
 export class AuthorizationComponent implements OnInit {
-
+  hide = true;
   constructor() { }
 
   ngOnInit(): void {
