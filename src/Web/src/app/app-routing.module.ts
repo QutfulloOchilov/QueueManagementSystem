@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationComponent } from './shared/pages/authorization/authorization.component';
-import { RegistrationComponent } from './shared/pages/registration/registration.component';
+import { AuthorizationComponent } from './pages/authorization/authorization.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/authorization', pathMatch: 'full'},
