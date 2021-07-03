@@ -12,11 +12,6 @@ import { CRUDWorkersComponent } from './pages/crudworkers/crudworkers.component'
 import { OptionToAcceptRejectClientsComponent } from './pages/option-to-accept-reject-clients/option-to-accept-reject-clients.component';
 import { ListOfFeedbacksComponent } from './pages/list-of-feedbacks/list-of-feedbacks.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -34,12 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   imports: [
     BrowserModule,
-    MatButtonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
