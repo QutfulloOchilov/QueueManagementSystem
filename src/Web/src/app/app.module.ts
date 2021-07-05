@@ -12,6 +12,9 @@ import { CRUDWorkersComponent } from './pages/crudworkers/crudworkers.component'
 import { OptionToAcceptRejectClientsComponent } from './pages/option-to-accept-reject-clients/option-to-accept-reject-clients.component';
 import { ListOfFeedbacksComponent } from './pages/list-of-feedbacks/list-of-feedbacks.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LayoutBusinessProfileComponent } from './shared/layouts/layout-business-profile/layout-business-profile.component';
+import { LayoutWorkerProfileComponent } from './shared/layouts/layout-worker-profile/layout-worker-profile.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
     CRUDWorkersComponent,
     OptionToAcceptRejectClientsComponent,
     ListOfFeedbacksComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent,
+    LayoutBusinessProfileComponent,
+    LayoutWorkerProfileComponent
   ],
   imports: [
     BrowserModule,
