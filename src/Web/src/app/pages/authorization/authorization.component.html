@@ -1,18 +1,19 @@
 <div class="container ">
     <div class="row d-flex justify-content-center mx-auto">
-    <div class="card w-auth p-4 mt-50">
+    <div class="card w-auth p-4 mt-50 shadow-lg p-3 mb-5 bg-body rounded">
         <h3 class="text-center mb-3 fw-bolder">QMS | Authorization</h3>
         <form>
             <div class="mb-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="email">
+              <label for="email" class="form-label shadow-sm rounded">Email:</label>
+              <input type="email" class="form-control shadow-sm rounded" id="email">
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Password:</label>
-              <input type="password" class="form-control" id="password">
+              <label for="password" class="form-label shadow-sm rounded">Password:</label>
+              <input type="password" class="form-control shadow-sm rounded" id="password">
             </div>
             
-            <button type="submit" class="btn btn-primary">Auth</button>
+            <button type="submit" class="btn btn-primary shadow-lg rounded">Auth</button>
+            
           </form>
           <a routerLink="/registration" routerLinkActive="true" class="mt-1 text-end">Registration</a>
     </div>
