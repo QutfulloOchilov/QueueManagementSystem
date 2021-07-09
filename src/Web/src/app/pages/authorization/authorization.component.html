@@ -1,20 +1,26 @@
-<div class="container ">
-    <div class="row d-flex justify-content-center mx-auto">
-    <div class="card w-auth p-4 mt-50">
-        <h3 class="text-center mb-3 fw-bolder">QMS | Authorization</h3>
+<div class="container-fluid bg-secondary">
+  <div class="d-flex vh-100 justify-content-center align-items-center">
+    <div class="card w-auth">
+      <div class="card-header">
+        <h3 class="text-center fw-bolder">QMS | Authorization</h3>
+      </div>
+      <div class="card-body">
         <form>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="email">
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password:</label>
-              <input type="password" class="form-control" id="password">
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Auth</button>
-          </form>
-          <a routerLink="/registration" routerLinkActive="true" class="mt-1 text-end">Registration</a>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Auth</button>
+          <div class="mt-2 text-center">
+            <span>Don't have an account?</span>&nbsp; <a routerLink="/registration" routerLinkActive="true" class="mt-1 text-end">Registration</a>
+          </div>
+        </form>
+      </div>
+
     </div>
-    </div>
+  </div>
 </div>
