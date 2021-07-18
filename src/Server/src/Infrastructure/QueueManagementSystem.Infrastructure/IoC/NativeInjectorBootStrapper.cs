@@ -8,37 +8,36 @@ using QueueManagementSystem.Infrastructure.Persistence.Repositories;
 
 namespace QueueManagementSystem.Infrastructure.IoC
 {
-    public class NativeInjectorBootStrapper
-    {
-        public static void RegisterServices(IServiceCollection service)
-        {
-            BuildeContext(service);
-            BuildeServies(service);
-            BuildeRepositories(service);
-            BuildMappers(service);
-            service.AddSingleton(service);
+	public static class NativeInjectorBootStrapper
+	{
+		public static void RegisterServices(this IServiceCollection services)
+		{
+			BuildContext(services);
+			BuildServices(services);
+			BuildRepositories(services);
+			BuildMappers(services);
+			services.AddSingleton(services);
+		}
 
-        }
+		private static void BuildContext(IServiceCollection service)
+		{
+			service.AddDbContext<IContext, QueueManagementSystemContext>();
+		}
 
-        private static void BuildeContext(IServiceCollection service)
-        {
-            service.AddScoped<IContext, QueueManagementSystemContext>();
-        }
+		private static void BuildMappers(IServiceCollection builder)
+		{
+			builder.AddAutoMapper(typeof(MappingProfile));
+		}
 
-        private static void BuildMappers(IServiceCollection builder)
-        {
-            builder.AddAutoMapper(typeof(MappingProfile));
-        }
+		private static void BuildRepositories(IServiceCollection repository)
+		{
+			repository.AddTransient<IUnitOfWork, UnitOfWork>();
+			repository.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+		}
 
-        private static void BuildeRepositories(IServiceCollection repository)
-        {
-            repository.AddTransient<IUnitOfWork, UnitOfWork>();
-            repository.AddScoped<IPersonRepository, PersonRepository>();
-        }
+		private static void BuildServices(IServiceCollection service)
+		{
 
-        private static void BuildeServies(IServiceCollection service)
-        {
-
-        }
-    }
+		}
+	}
 }

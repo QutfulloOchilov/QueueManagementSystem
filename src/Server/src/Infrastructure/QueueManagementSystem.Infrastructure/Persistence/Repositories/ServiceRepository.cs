@@ -4,10 +4,12 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 {
-    public class PersonRepository : BaseRepository<Person>, IPersonRepository
-    {
-        public PersonRepository(IContext dbContext) : base(dbContext)
-        {
-        }
-    }
+	public class ServiceRepository : BaseRepository<Service>, IServiceRepository
+	{
+		public ServiceRepository(IContext _db)
+			: base(_db)
+		{
+
+		}
+	}
 }

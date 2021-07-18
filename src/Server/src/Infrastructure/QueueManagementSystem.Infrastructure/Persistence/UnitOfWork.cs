@@ -21,11 +21,11 @@ namespace QueueManagementSystem.Infrastructure.Persistence
 
         void BuildRepositories(IServiceProvider serviceProvider)
         {
-            PersonRepository = serviceProvider.GetService<IPersonRepository>();
+            PersonRepository = serviceProvider.GetService<IUserRepository>();
         }
 
         #region Properties
-        public IPersonRepository PersonRepository { get; private set; }
+        public IUserRepository PersonRepository { get; private set; }
         #endregion
 
         public int? CommandTimeout

@@ -3,8 +3,8 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-    public interface IPersonRepository : IRepository<Person>
-    {
+	public interface IBusinessRepository : IRepository<Business>
+	{
 
-    }
+	}
 }
