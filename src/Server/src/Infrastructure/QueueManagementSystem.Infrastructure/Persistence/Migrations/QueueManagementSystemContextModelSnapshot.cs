@@ -181,7 +181,7 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -198,8 +198,8 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("BusinessId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CardId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -219,7 +219,13 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -227,8 +233,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BusinessId");
 
                     b.ToTable("Workers");
                 });
@@ -320,17 +324,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
                     b.Navigation("Worker");
                 });
 
-            modelBuilder.Entity("QueueManagementSystem.Domain.Entities.Worker", b =>
-                {
-                    b.HasOne("QueueManagementSystem.Domain.Entities.Business", "Business")
-                        .WithMany("Workers")
-                        .HasForeignKey("BusinessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Business");
-                });
-
             modelBuilder.Entity("QueueManagementSystem.Domain.Entities.WorkerSchedule", b =>
                 {
                     b.HasOne("QueueManagementSystem.Domain.Entities.Worker", "Worker")
@@ -345,8 +338,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("QueueManagementSystem.Domain.Entities.Business", b =>
                 {
                     b.Navigation("Feedbacks");
-
-                    b.Navigation("Workers");
                 });
 
             modelBuilder.Entity("QueueManagementSystem.Domain.Entities.Service", b =>

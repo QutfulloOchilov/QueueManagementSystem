@@ -5,5 +5,6 @@ namespace QueueManagementSystem.Application.Repositories
 {
 	public interface IWorkerRepository : IRepository<Worker>
 	{
+
 	}
 }

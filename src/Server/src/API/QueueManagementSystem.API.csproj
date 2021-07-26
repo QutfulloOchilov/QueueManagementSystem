@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\Domain\QueueManagementSystem.Domain\QueueManagementSystem.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\QueueManagementSystem.Infrastructure\QueueManagementSystem.Infrastructure.csproj" />
   </ItemGroup>
 

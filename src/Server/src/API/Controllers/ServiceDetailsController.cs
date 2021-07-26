@@ -20,14 +20,5 @@ namespace QueueManagementSystem.API.Controllers
 			repo = _repo;
 			mapper = _mapper;
 		}
-
-		[HttpGet("{id}")]
-		public async Task<ActionResult<ServiceDetailsDTO>> GetById(Guid id)
-		{
-			var serviceDetail = await repo.ServiceDetails.GetByIdAsync(id);
-			if (serviceDetail == null)
-				return NotFound();
-			return Ok(mapper.Map<ServiceDetailsDTO>(serviceDetail));
-		}
 	}
 }

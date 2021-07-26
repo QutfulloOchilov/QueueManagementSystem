@@ -1,4 +1,5 @@
-﻿using QueueManagementSystem.Application.DTOs;
+﻿using QueueManagementSystem.Application.Workers.QueryModels.Common;
+using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Mapper
@@ -7,15 +8,14 @@ namespace QueueManagementSystem.Application.Mapper
 	{
 		public WorkerProfile()
 		{
-			BuildMap<Worker, WorkerDTO>();
+			BuildMap<Worker, WorkerViewModel>();
 		}
 
 		protected override void BuildMap<TSource, TDestination>()
 		{
 			CreateMap<TSource, TDestination>();
 			CreateMap<TDestination, TSource>();
-			CreateMap<TSource, WorkerServicesDTO>()
-				.ForMember(dest => dest.WorkerId, src => src.MapFrom(w => (w as Worker).Id));
+			CreateMap<WorkerQueryModel, TSource>();
 		}
 	}
 }

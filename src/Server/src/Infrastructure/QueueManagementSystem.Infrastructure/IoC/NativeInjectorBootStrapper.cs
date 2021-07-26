@@ -2,9 +2,13 @@
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Mapper;
 using QueueManagementSystem.Application.Repositories;
+using QueueManagementSystem.Application.Services;
+using QueueManagementSystem.Application.Workers.Services;
+using QueueManagementSystem.Domain.Entities;
 using QueueManagementSystem.Infrastructure.Persistence;
 using QueueManagementSystem.Infrastructure.Persistence.Database;
 using QueueManagementSystem.Infrastructure.Persistence.Repositories;
+using QueueManagementSystem.Services;
 
 namespace QueueManagementSystem.Infrastructure.IoC
 {
@@ -32,12 +36,12 @@ namespace QueueManagementSystem.Infrastructure.IoC
 		private static void BuildRepositories(IServiceCollection repository)
 		{
 			repository.AddTransient<IUnitOfWork, UnitOfWork>();
-			repository.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+			repository.AddScoped<IWorkerRepository, WorkerRepository>();
 		}
 
 		private static void BuildServices(IServiceCollection service)
 		{
-
+			service.AddScoped<IWorkerService, WorkerService>();
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace QueueManagementSystem.Application.Mapper
 			CreateMap<TDestination, TSource>();
 			CreateMap<Worker, WorkerDTO>();
 			CreateMap<Business, BusinessDTO>();
-			CreateMap<User, UserDTO>();
+			CreateMap<Person, UserDTO>();
 		}
 	}
 }

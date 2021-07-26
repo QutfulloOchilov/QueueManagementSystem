@@ -4,7 +4,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<Person>, IUserRepository
     {
         public UserRepository(IContext dbContext)
             : base(dbContext)

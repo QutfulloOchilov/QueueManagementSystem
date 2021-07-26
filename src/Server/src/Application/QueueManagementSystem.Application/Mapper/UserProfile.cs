@@ -6,7 +6,7 @@ namespace QueueManagementSystem.Application.Mapper
 	{
 		public UserProfile()
 		{
-			BuildMap<User, UserProfile>();
+			BuildMap<Person, UserProfile>();
 		}
 	}
 }

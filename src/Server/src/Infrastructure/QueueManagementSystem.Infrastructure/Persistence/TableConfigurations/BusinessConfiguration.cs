@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using QueueManagementSystem.Domain.Entities;
-using System;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 {
@@ -15,9 +14,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 
 			builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
-			builder.HasMany(b => b.Workers)
-					.WithOne(w => w.Business)
-					.HasForeignKey(b => b.BusinessId);
 		}
 	}
 }

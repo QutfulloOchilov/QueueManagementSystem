@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\..\Services\QueueManagementSystem.Services\QueueManagementSystem.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
