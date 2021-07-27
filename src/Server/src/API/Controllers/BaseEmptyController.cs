@@ -8,8 +8,8 @@ using QueueManagementSystem.Domain.Interfaces;
 namespace QueueManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
-    public class BaseEmptyController<TEntity, TViewModel, TQueryModel, TService> : ControllerBase
+	[Authorize]
+	public class BaseEmptyController<TEntity, TViewModel, TQueryModel, TService> : ControllerBase
         where TEntity : class, IEntity
         where TViewModel : BaseViewModel
         where TQueryModel : BaseQueryModel

@@ -9,7 +9,7 @@ namespace QueueManagementSystem.Application.Repositories
 		IServiceRepository Services { get; }
 		IWorkerRepository Workers { get; }
 		IFeedbackRepository Feedbacks { get; }
-		IServiceDetailsRepository ServiceDetails { get; }
+		IServiceDetailRepository ServiceDetails { get; }
 		int Save();
 		Task<int> SaveAsync();
 	}

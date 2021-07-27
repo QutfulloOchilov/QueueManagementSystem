@@ -2,7 +2,7 @@
 
 namespace QueueManagementSystem.Domain.Entities
 {
-	public class ServiceDetails : EntityBase
+	public class ServiceDetail : EntityBase
 	{
 		public virtual Service Service { get; set; }
 		public Guid ServiceId { get; set; }

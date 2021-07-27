@@ -6,11 +6,11 @@ namespace QueueManagementSystem.Domain.Entities
 	{
 		public Service()
 		{
-			ServiceDetails = new List<ServiceDetails>();
+			ServiceDetails = new List<ServiceDetail>();
 			Workers = new List<Worker>();
 		}
 		public string Name { get; set; }
-		public virtual List<ServiceDetails> ServiceDetails { get; set; }
+		public virtual List<ServiceDetail> ServiceDetails { get; set; }
 		public virtual List<Worker> Workers { get; set; }
 	}
 }

@@ -165,15 +165,15 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
 		{
 			//TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
 			//return this.Database.ExecuteSqlCommand(sql, parameters);
-			return default;
+			return this.Database.ExecuteSqlRaw(sql, parameters);
 		}
 
 		[Obsolete]
-		public Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
+		public async Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
 		{
 			//TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
 			//return this.Database.ExecuteSqlCommandAsync(sql, parameters);
-			return default;
+			return await this.Database.ExecuteSqlRawAsync(sql, parameters);
 		}
 
 		public void RemoveRange(IEnumerable<IEntity> entities)

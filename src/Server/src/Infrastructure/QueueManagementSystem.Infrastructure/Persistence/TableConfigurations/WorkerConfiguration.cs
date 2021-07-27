@@ -28,7 +28,7 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 
 			builder.HasMany(w => w.Services)
 					.WithMany(s => s.Workers)
-					.UsingEntity<ServiceDetails>(j => j.HasOne(sd => sd.Service)
+					.UsingEntity<ServiceDetail>(j => j.HasOne(sd => sd.Service)
 													  .WithMany(w => w.ServiceDetails)
 													  .HasForeignKey(sd => sd.ServiceId),
 

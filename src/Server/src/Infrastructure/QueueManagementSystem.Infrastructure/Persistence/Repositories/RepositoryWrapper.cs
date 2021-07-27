@@ -11,7 +11,7 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 		private IServiceRepository serviceRepo;
 		private IWorkerRepository workerRepo;
 		private IFeedbackRepository feedbackRepo;
-		private IServiceDetailsRepository serviceDetailsRepo;
+		private IServiceDetailRepository serviceDetailsRepo;
 		private IContext db;
 
 		public RepositoryWrapper(IContext _db)
@@ -69,12 +69,12 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IServiceDetailsRepository ServiceDetails
+		public IServiceDetailRepository ServiceDetails
 		{
 			get
 			{
 				if (serviceDetailsRepo == null)
-					serviceDetailsRepo = new ServiceDetailsRepository(db);
+					serviceDetailsRepo = new ServiceDetailRepository(db);
 				return serviceDetailsRepo;
 			}
 		}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QueueManagementSystem.Application.QueryModels;
 using QueueManagementSystem.Application.Services;
 using QueueManagementSystem.Application.ViewModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace QueueManagementSystem.API.Controllers
 {
 	[Route("api/[controller]")]
-	//[Authorize]
+	[Authorize]
 	public class BaseController<TEntity, TViewModel, TQueryModel, TService> : BaseEmptyController<TEntity, TViewModel, TQueryModel, TService>
 	   where TEntity : class, IEntity
 	   where TViewModel : BaseViewModel
