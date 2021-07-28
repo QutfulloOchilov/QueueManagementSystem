@@ -2,27 +2,27 @@
 
 namespace QueueManagementSystem.Application.Mapper
 {
-    public class MappingProfile : Profile
-    {
-        public MappingProfile()
-        {
-            MapQueryModels();
-            MapViewModel();
-        }
+	public class MappingProfile : Profile
+	{
+		public MappingProfile()
+		{
+			MapQueryModels();
+			MapViewModel();
+		}
 
-        void MapQueryModels()
-        {
+		void MapQueryModels()
+		{
 
-        }
+		}
 
-        void MapViewModel()
-        {
-        }
+		void MapViewModel()
+		{
+		}
 
-        protected virtual void BuildMap<TSource, TDestination>()
-        {
-            CreateMap<TSource, TDestination>();
-            CreateMap<TDestination, TSource>();
-        }
-    }
+		protected virtual void BuildMap<TSource, TDestination>()
+		{
+			CreateMap<TSource, TDestination>();
+			CreateMap<TDestination, TSource>();
+		}
+	}
 }
