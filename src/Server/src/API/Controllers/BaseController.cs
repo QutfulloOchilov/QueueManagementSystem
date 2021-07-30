@@ -35,8 +35,7 @@ namespace QueueManagementSystem.API.Controllers
 
 		protected Task<TViewModel> GetEntityById(Guid id)
 		{
-			var a = Service.GetById(id);
-			return a;
+			return Service.GetById(id);
 		}
 
 		protected virtual Task<TViewModel> Create([FromBody] TQueryModel createQueryModel)

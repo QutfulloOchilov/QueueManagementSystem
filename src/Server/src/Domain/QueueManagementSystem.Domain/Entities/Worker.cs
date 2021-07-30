@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace QueueManagementSystem.Domain.Entities
 {
@@ -13,6 +14,8 @@ namespace QueueManagementSystem.Domain.Entities
 			WorkerSchedules = new List<WorkerSchedule>();
 			Services = new List<Service>();
 		}
+		public virtual Business Business { get; set; }
+		public Guid BusinessId { get; set; }
 		public virtual List<ServiceDetail> ServiceDetails { get; set; }
 		public virtual List<User> Users { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }

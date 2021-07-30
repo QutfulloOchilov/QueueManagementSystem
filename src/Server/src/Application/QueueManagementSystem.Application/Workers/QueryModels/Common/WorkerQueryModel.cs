@@ -14,9 +14,10 @@ namespace QueueManagementSystem.Application.Workers.QueryModels.Common
         [JsonConverter(typeof(GenderConverter))]
         public Gender Gender { get; set; }
 
-        //[JsonConverter(typeof(ShortDateTimeConverter))]
-        public DateTime Birthdate { get; set; }
+		[JsonConverter(typeof(ShortDateTimeConverter))]
+		public DateTime Birthdate { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-    }
+		public Guid BusinessId { get; set; }
+	}
 }
