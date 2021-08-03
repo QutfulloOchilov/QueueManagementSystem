@@ -4,8 +4,10 @@ using QueueManagementSystem.Application.Businesses.QueryModels.Common;
 using QueueManagementSystem.Application.Businesses.QueryModels.Insert;
 using QueueManagementSystem.Application.Businesses.Services;
 using QueueManagementSystem.Application.Businesses.ViewModels;
+using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace QueueManagementSystem.API.Controllers
@@ -39,6 +41,12 @@ namespace QueueManagementSystem.API.Controllers
 		public async Task<IActionResult> Delete(Guid id)
 		{
 			return await base.Delete(id);
+		}
+
+		[HttpGet("getWorkers/{businessId}")]
+		public async Task<ActionResult<IEnumerable<WorkerViewModel>>> GetWorkers(Guid businessId)
+		{
+			return Ok(await Service.GetWorkers(businessId));
 		}
 	}
 }
