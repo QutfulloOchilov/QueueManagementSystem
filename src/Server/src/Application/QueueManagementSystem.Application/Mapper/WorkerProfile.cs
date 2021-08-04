@@ -13,8 +13,7 @@ namespace QueueManagementSystem.Application.Mapper
 
 		protected override void BuildMap<TSource, TDestination>()
 		{
-			CreateMap<TSource, TDestination>();
-			CreateMap<TDestination, TSource>();
+			base.BuildMap<TSource, TDestination>();
 			CreateMap<WorkerQueryModel, TSource>();
 		}
 	}

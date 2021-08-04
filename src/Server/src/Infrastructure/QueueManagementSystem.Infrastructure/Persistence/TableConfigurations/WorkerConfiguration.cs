@@ -26,6 +26,10 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 			builder.Property(w => w.Email)
 					.IsRequired();
 
+			builder.HasOne(w => w.Business)
+					.WithMany(b => b.Workers)
+					.HasForeignKey(w => w.BusinessId);
+
 			builder.HasMany(w => w.Services)
 					.WithMany(s => s.Workers)
 					.UsingEntity<ServiceDetail>(j => j.HasOne(sd => sd.Service)
