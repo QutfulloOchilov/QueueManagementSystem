@@ -389,4 +389,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/src/Server/src/Infrastructure/QueueManagementSystem.Infrastructure/Persistence/Migrations
