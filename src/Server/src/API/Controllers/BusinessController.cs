@@ -25,6 +25,12 @@ namespace QueueManagementSystem.API.Controllers
 			return Ok(await base.GetEntityById(id));
 		}
 
+		[HttpGet("[action]/{businessId}")]
+		public async Task<ActionResult<IEnumerable<WorkerViewModel>>> GetWorkers(Guid businessId)
+		{
+			return Ok(await Service.GetWorkers(businessId));
+		}
+
 		[HttpPost]
 		public async Task<ActionResult<BusinessViewModel>> Create([FromBody] InsertBusinessQueryModel model)
 		{
@@ -35,18 +41,6 @@ namespace QueueManagementSystem.API.Controllers
 		public async Task<ActionResult<BusinessViewModel>> Update([FromBody] BusinessQueryModel model)
 		{
 			return Ok(await base.Update(model));
-		}
-
-		[HttpDelete]
-		public async Task<IActionResult> Delete(Guid id)
-		{
-			return await base.Delete(id);
-		}
-
-		[HttpGet("getWorkers/{businessId}")]
-		public async Task<ActionResult<IEnumerable<WorkerViewModel>>> GetWorkers(Guid businessId)
-		{
-			return Ok(await Service.GetWorkers(businessId));
 		}
 	}
 }

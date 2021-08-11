@@ -6,15 +6,15 @@ using System.Text.Json.Serialization;
 
 namespace QueueManagementSystem.Application.Workers.ViewModels
 {
-    public class WorkerViewModel : BaseViewModel
-    {
+	public class WorkerViewModel : BaseViewModel
+	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string MiddleName { get; set; }
-		
+
 		[JsonConverter(typeof(GenderConverter))]
 		public Gender Gender { get; set; }
-		
+
 		[JsonConverter(typeof(ShortDateTimeConverter))]
 		public DateTime Birthdate { get; set; }
 		public string PhoneNumber { get; set; }

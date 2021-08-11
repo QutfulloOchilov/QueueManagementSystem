@@ -3,7 +3,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-    public interface IUserRepository : IRepository<Person>
+    public interface IUserRepository : IRepository<User>
     {
 
     }

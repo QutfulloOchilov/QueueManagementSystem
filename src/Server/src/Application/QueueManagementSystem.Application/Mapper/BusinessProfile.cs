@@ -9,12 +9,7 @@ namespace QueueManagementSystem.Application.Mapper
 		public BusinessProfile()
 		{
 			BuildMap<Business, BusinessViewModel>();
-		}
-
-		protected override void BuildMap<TSource, TDestination>()
-		{
-			base.BuildMap<TSource, TDestination>();
-			CreateMap<BusinessQueryModel, TSource>();
+			BuildMap<BusinessQueryModel, Business>();
 		}
 	}
 }

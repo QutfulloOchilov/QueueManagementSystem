@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using QueueManagementSystem.Application._Services.Services;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Businesses.Services;
 using QueueManagementSystem.Application.Mapper;
 using QueueManagementSystem.Application.Repositories;
+using QueueManagementSystem.Application.Users.Services;
 using QueueManagementSystem.Application.Workers.Services;
 using QueueManagementSystem.Application.WorkerSchedules.Services;
 using QueueManagementSystem.Infrastructure.Persistence;
@@ -39,6 +41,9 @@ namespace QueueManagementSystem.Infrastructure.IoC
 			repository.AddScoped<IWorkerRepository, WorkerRepository>();
 			repository.AddScoped<IBusinessRepository, BusinessRepository>();
 			repository.AddScoped<IWorkerScheduleRepository, WorkerScheduleRepository>();
+			repository.AddScoped<IServiceRepository, ServiceRepository>();
+			repository.AddScoped<IUserRepository, UserRepository>();
+			repository.AddScoped<IServiceDetailRepository, ServiceDetailRepository>();
 		}
 
 		private static void BuildServices(IServiceCollection service)
@@ -46,6 +51,8 @@ namespace QueueManagementSystem.Infrastructure.IoC
 			service.AddScoped<IWorkerService, WorkerService>();
 			service.AddScoped<IBusinessService, BusinessService>();
 			service.AddScoped<IWorkerScheduleService, WorkerScheduleService>();
+			service.AddScoped<IServiceService, ServiceService>();
+			service.AddScoped<IUserService, UserService>();
 		}
 	}
 }

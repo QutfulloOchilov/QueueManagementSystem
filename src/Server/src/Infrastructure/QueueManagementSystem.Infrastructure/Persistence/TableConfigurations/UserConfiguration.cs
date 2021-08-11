@@ -22,11 +22,11 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 
 
 
-			builder.HasMany(u => u.Workers)
+			builder.HasMany(u => u.ServiceDetails)
 					.WithMany(w => w.Users)
-					.UsingEntity<HaircutReservation>(j => j.HasOne(hr => hr.Worker)
-														   .WithMany(w => w.Reservations)
-														   .HasForeignKey(hr => hr.WorkerId),
+					.UsingEntity<HaircutReservation>(j => j.HasOne(hr => hr.ServiceDetail)
+														   .WithMany(sd => sd.HaircutReservations)
+														   .HasForeignKey(hr => hr.ServiceDetailId),
 
 													 j => j.HasOne(hr => hr.User)
 															.WithMany(u => u.Reservations)
