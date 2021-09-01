@@ -9,12 +9,7 @@ namespace QueueManagementSystem.Application.Mapper
 		public WorkerProfile()
 		{
 			BuildMap<Worker, WorkerViewModel>();
-		}
-
-		protected override void BuildMap<TSource, TDestination>()
-		{
-			base.BuildMap<TSource, TDestination>();
-			CreateMap<WorkerQueryModel, TSource>();
+			BuildMap<WorkerQueryModel, Worker>();
 		}
 	}
 }

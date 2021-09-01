@@ -7,11 +7,12 @@ namespace QueueManagementSystem.Domain.Entities
 		public User()
 		{
 			Reservations = new List<HaircutReservation>();
-			Workers = new List<Worker>();
 			Feedbacks = new List<Feedback>();
+			ServiceDetails = new List<ServiceDetail>();
 		}
+
 		public virtual List<HaircutReservation> Reservations { get; set; }
-		public virtual List<Worker> Workers { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }
+		public virtual List<ServiceDetail> ServiceDetails { get; set; }
 	}
 }

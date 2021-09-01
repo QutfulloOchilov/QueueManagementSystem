@@ -8,7 +8,11 @@ namespace QueueManagementSystem.Application.WorkerSchedules.QueryModels.Common
 	{
 		[JsonConverter(typeof(DayOfWeekConverter))]
 		public DayOfWeek DayOfWeek { get; set; }
+		
+		[JsonConverter(typeof(ShortTimeConverter))]
 		public DateTime Start { get; set; }
+
+		[JsonConverter(typeof(ShortTimeConverter))]
 		public DateTime End { get; set; }
 		public Guid WorkerId { get; set; }
 	}

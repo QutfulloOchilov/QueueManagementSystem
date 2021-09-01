@@ -13,7 +13,7 @@ namespace QueueManagementSystem.Application.Attributes
 
 		public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
 		{
-			writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
+			writer.WriteStringValue(value.ToString("yyyy-MM-dd HH:mm"));
 		}
 	}
 }

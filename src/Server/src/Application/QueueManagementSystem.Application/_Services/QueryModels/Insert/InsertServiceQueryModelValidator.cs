@@ -1,0 +1,12 @@
+﻿using QueueManagementSystem.Application._Services.QueryModels.Common;
+
+namespace QueueManagementSystem.Application._Services.QueryModels.Insert
+{
+	public class InsertServiceQueryModelValidator : ServiceQueryModelValidator<InsertServiceQueryModel>
+	{
+		public InsertServiceQueryModelValidator() : base()
+		{
+
+		}
+	}
+}

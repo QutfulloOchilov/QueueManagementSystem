@@ -41,11 +41,5 @@ namespace QueueManagementSystem.API.Controllers
 		{
 			return Ok(await base.Update(model));
 		}
-
-		[HttpDelete]
-		public async Task<IActionResult> Delete(Guid id)
-		{
-			return await base.Delete(id);
-		}
 	}
 }

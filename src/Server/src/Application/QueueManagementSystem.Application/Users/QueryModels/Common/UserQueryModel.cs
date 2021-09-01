@@ -1,12 +1,11 @@
 ﻿using QueueManagementSystem.Application.Attributes;
-using QueueManagementSystem.Application.ViewModel;
 using QueueManagementSystem.Domain.Entities;
 using System;
 using System.Text.Json.Serialization;
 
-namespace QueueManagementSystem.Application.Workers.ViewModels
+namespace QueueManagementSystem.Application.Users.QueryModels.Common
 {
-	public class WorkerViewModel : BaseViewModel
+	public class UserQueryModel : UserBaseQueryModel
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

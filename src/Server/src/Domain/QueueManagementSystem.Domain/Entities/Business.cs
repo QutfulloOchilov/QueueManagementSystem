@@ -11,6 +11,7 @@ namespace QueueManagementSystem.Domain.Entities
 		}
 		public string Name { get; set; }
 		public string Address { get; set; }
+		public bool IsFeedbackAllowed { get; set; }
 		public virtual List<Worker> Workers { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }
 	}

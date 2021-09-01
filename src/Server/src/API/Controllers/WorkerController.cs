@@ -6,6 +6,7 @@ using QueueManagementSystem.Application.Workers.Services;
 using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace QueueManagementSystem.API.Controllers
@@ -23,10 +24,36 @@ namespace QueueManagementSystem.API.Controllers
 			return Ok(await base.GetEntityById(id));
 		}
 
+		[HttpGet("[action]/{workerId}")]
+		public async Task<ActionResult<IEnumerable<WorkerServiceViewModel>>> GetServices(Guid workerId)
+		{
+			return Ok(await Service.GetServices(workerId));
+		}
+
+		[HttpGet("[action]/{workerId}")]
+		public async Task<ActionResult<IEnumerable<WorkerReservationViewModel>>> GetReservations(Guid workerId)
+		{
+			return Ok(await Service.GetReservations(workerId));
+		}
+
 		[HttpPost]
 		public async Task<ActionResult<WorkerViewModel>> Create([FromBody] InsertWorkerQueryModel model)
 		{
 			return Ok(await base.Create(model));
+		}
+
+		[HttpPost("[action]")]
+		public async Task<IActionResult> AddService([FromBody] AddServiceQueryModel model)
+		{
+			await Service.AddService(model);
+			return Ok();
+		}
+
+		[HttpPut("[action]")]
+		public async Task<IActionResult> UpdateService([FromBody] UpdateServiceQueryModel model)
+		{
+			await Service.UpdateService(model);
+			return Ok();
 		}
 
 		[HttpPut]
@@ -35,10 +62,11 @@ namespace QueueManagementSystem.API.Controllers
 			return Ok(await base.Update(model));
 		}
 
-		[HttpDelete]
-		public async Task<IActionResult> Delete(Guid id)
+		[HttpDelete("[action]")]
+		public async Task<IActionResult> DeleteService([FromBody] DeleteServiceQueryModel model)
 		{
-			return await base.Delete(id);
+			await Service.DeleteService(model);
+			return Ok();
 		}
 	}
 }
