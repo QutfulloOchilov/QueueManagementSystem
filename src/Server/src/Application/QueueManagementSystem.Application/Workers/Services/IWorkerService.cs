@@ -10,10 +10,10 @@ namespace QueueManagementSystem.Application.Workers.Services
 {
 	public interface IWorkerService : IService<Worker, WorkerViewModel, WorkerBaseQueryModel>
 	{
-		Task AddService(AddServiceQueryModel model);
-		Task<IEnumerable<WorkerServiceViewModel>> GetServices(Guid workerId);
-		Task UpdateService(UpdateServiceQueryModel model);
-		Task DeleteService(DeleteServiceQueryModel model);
+		Task AddJob(AddJobQueryModel model);
+		Task<IEnumerable<WorkerJobViewModel>> GetJobs(Guid workerId);
+		Task UpdateJob(UpdateJobQueryModel model);
+		Task DeleteJob(DeleteJobQueryModel model);
 		Task<IEnumerable<WorkerReservationViewModel>> GetReservations(Guid workerId);
 	}
 }

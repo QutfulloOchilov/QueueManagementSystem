@@ -4,20 +4,20 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Mapper
 {
-	public class ServiceDetailProfile : MappingProfile
+	public class JobDetailProfile : MappingProfile
 	{
-		public ServiceDetailProfile()
+		public JobDetailProfile()
 		{
-			BuildMap<AddServiceQueryModel, ServiceDetail>();
+			BuildMap<AddJobQueryModel, JobDetail>();
 		}
 
 		protected override void BuildMap<TSource, TDestination>()
 		{
 			base.BuildMap<TSource, TDestination>();
 			
-			CreateMap<ServiceDetail, WorkerServiceViewModel>()
-				.ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.Service.Name))
-				.ForMember(dest => dest.ServiceDetailId, opt => opt.MapFrom(sd => sd.Id));
+			CreateMap<JobDetail, WorkerJobViewModel>()
+				.ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.Job.Name))
+				.ForMember(dest => dest.JobDetailId, opt => opt.MapFrom(sd => sd.Id));
 		}
 	}
 }

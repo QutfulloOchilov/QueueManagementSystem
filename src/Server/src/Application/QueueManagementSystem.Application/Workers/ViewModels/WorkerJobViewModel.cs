@@ -2,9 +2,9 @@
 
 namespace QueueManagementSystem.Application.Workers.ViewModels
 {
-	public class WorkerServiceViewModel
+	public class WorkerJobViewModel
 	{
-		public Guid ServiceDetailId { get; set; }
+		public Guid JobDetailId { get; set; }
 		public decimal Price { get; set; }
 		public int Duration { get; set; }
 		public string Name { get; set; }

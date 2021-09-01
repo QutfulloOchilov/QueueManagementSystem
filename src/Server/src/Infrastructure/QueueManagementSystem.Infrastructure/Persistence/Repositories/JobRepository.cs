@@ -4,9 +4,9 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 {
-	public class ServiceDetailRepository : BaseRepository<ServiceDetail>, IServiceDetailRepository
+	public class JobRepository : BaseRepository<Job>, IJobRepository
 	{
-		public ServiceDetailRepository(IContext _db)
+		public JobRepository(IContext _db)
 			: base(_db)
 		{
 

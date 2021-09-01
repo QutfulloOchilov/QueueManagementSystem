@@ -6,10 +6,10 @@ namespace QueueManagementSystem.Application.Repositories
 	{
 		IUserRepository Users { get; }
 		IBusinessRepository Businesses { get; }
-		IServiceRepository Services { get; }
+		IJobRepository Services { get; }
 		IWorkerRepository Workers { get; }
 		IFeedbackRepository Feedbacks { get; }
-		IServiceDetailRepository ServiceDetails { get; }
+		IJobDetailRepository JobDetails { get; }
 		int Save();
 		Task<int> SaveAsync();
 	}

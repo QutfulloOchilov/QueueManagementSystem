@@ -2,15 +2,15 @@
 
 namespace QueueManagementSystem.Domain.Entities
 {
-	public class Service : EntityBase
+	public class Job : EntityBase
 	{
-		public Service()
+		public Job()
 		{
-			ServiceDetails = new List<ServiceDetail>();
+			JobDetails = new List<JobDetail>();
 			Workers = new List<Worker>();
 		}
 		public string Name { get; set; }
-		public virtual List<ServiceDetail> ServiceDetails { get; set; }
+		public virtual List<JobDetail> JobDetails { get; set; }
 		public virtual List<Worker> Workers { get; set; }
 	}
 }

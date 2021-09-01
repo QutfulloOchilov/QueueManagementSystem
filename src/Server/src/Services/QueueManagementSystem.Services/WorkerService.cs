@@ -14,60 +14,60 @@ namespace QueueManagementSystem.Services
 {
 	public class WorkerService : BaseService<Worker, WorkerViewModel, WorkerBaseQueryModel>, IWorkerService
 	{
-		private readonly IServiceRepository serviceRepo;
+		private readonly IJobRepository jobRepo;
 		private readonly IMapper mapper;
 
-		public WorkerService(IUnitOfWork unitOfWork, IWorkerRepository repository, IServiceRepository _serviceRepo, IMapper _mapper)
+		public WorkerService(IUnitOfWork unitOfWork, IWorkerRepository repository, IJobRepository _jobRepo, IMapper _mapper)
 			: base(unitOfWork, repository, _mapper)
 		{
-			serviceRepo = _serviceRepo;
+			jobRepo = _jobRepo;
 			mapper = _mapper;
 		}
 
-		public async Task AddService(AddServiceQueryModel model)
+		public async Task AddJob(AddJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var service = await serviceRepo.GetByIdAsync(model.ServiceId);
+			var job = await jobRepo.GetByIdAsync(model.JobId);
 
-			if (service == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
+			if (job == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
 
-			worker.ServiceDetails.Add(mapper.Map<ServiceDetail>(model));
+			worker.JobDetails.Add(mapper.Map<JobDetail>(model));
 			await UnitOfWork.SaveChangesAsync();
 		}
 
-		public async Task<IEnumerable<WorkerServiceViewModel>> GetServices(Guid workerId)
+		public async Task<IEnumerable<WorkerJobViewModel>> GetJobs(Guid workerId)
 		{
 			var worker = await Repository.GetByIdAsync(workerId);
-			var services = worker.ServiceDetails;
-			return mapper.Map<IEnumerable<ServiceDetail>, IEnumerable<WorkerServiceViewModel>>(services);
+			var jobs = worker.JobDetails;
+			return mapper.Map<IEnumerable<JobDetail>, IEnumerable<WorkerJobViewModel>>(jobs);
 		}
 
-		public async Task UpdateService(UpdateServiceQueryModel model)
+		public async Task UpdateJob(UpdateJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var serviceDetail = worker.ServiceDetails.FirstOrDefault(sd => sd.Id == model.ServiceDetailId);
-			if (serviceDetail == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
-			mapper.Map(model, serviceDetail);
+			var jobDetail = worker.JobDetails.FirstOrDefault(sd => sd.Id == model.JobDetailId);
+			if (jobDetail == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
+			mapper.Map(model, jobDetail);
 			await UnitOfWork.SaveChangesAsync();
 		}
 
-		public async Task DeleteService(DeleteServiceQueryModel model)
+		public async Task DeleteJob(DeleteJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var serviceDetail = worker.ServiceDetails.FirstOrDefault(sd => sd.Id == model.ServiceDetailId);
-			if (serviceDetail == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
-			worker.ServiceDetails.Remove(serviceDetail);
+			var jobDetail = worker.JobDetails.FirstOrDefault(sd => sd.Id == model.JobDetailId);
+			if (jobDetail == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
+			worker.JobDetails.Remove(jobDetail);
 			await UnitOfWork.SaveChangesAsync();
 		}
 
 		public async Task<IEnumerable<WorkerReservationViewModel>> GetReservations(Guid workerId)
 		{
 			List<HaircutReservation> reservations = new List<HaircutReservation>();
-			var a = (await Repository.GetByIdAsync(workerId)).ServiceDetails;
-			(await Repository.GetByIdAsync(workerId)).ServiceDetails.ForEach(sd => reservations.AddRange(sd.HaircutReservations));
+			var a = (await Repository.GetByIdAsync(workerId)).JobDetails;
+			(await Repository.GetByIdAsync(workerId)).JobDetails.ForEach(sd => reservations.AddRange(sd.HaircutReservations));
 
 			return mapper.Map<IEnumerable<WorkerReservationViewModel>>(reservations);
 		}

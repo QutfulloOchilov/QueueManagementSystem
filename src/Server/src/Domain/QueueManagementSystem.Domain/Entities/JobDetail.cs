@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace QueueManagementSystem.Domain.Entities
 {
-	public class ServiceDetail : EntityBase
+	public class JobDetail : EntityBase
 	{
-		public ServiceDetail()
+		public JobDetail()
 		{
 			Users = new List<User>();
 			HaircutReservations = new List<HaircutReservation>();
 		}
-		public virtual Service Service { get; set; }
-		public Guid ServiceId { get; set; }
+		public virtual Job Job { get; set; }
+		public Guid JobId { get; set; }
 		public virtual Worker Worker { get; set; }
 		public Guid WorkerId { get; set; }
 		public virtual List<User> Users { get; set; }

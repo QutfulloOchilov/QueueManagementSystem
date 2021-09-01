@@ -2,9 +2,9 @@
 
 namespace QueueManagementSystem.Application.Workers.QueryModels
 {
-	public class AddServiceQueryModel
+	public class AddJobQueryModel
 	{
-		public Guid ServiceId { get; set; }
+		public Guid JobId { get; set; }
 		public decimal Price { get; set; }
 		public int Duration { get; set; }
 		public Guid WorkerId { get; set; }

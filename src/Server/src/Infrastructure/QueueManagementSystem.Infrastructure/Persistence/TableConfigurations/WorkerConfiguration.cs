@@ -30,19 +30,19 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 					.WithMany(b => b.Workers)
 					.HasForeignKey(w => w.BusinessId);
 
-			builder.HasMany(w => w.Services)
+			builder.HasMany(w => w.Jobs)
 					.WithMany(s => s.Workers)
-					.UsingEntity<ServiceDetail>(j => j.HasOne(sd => sd.Service)
-													  .WithMany(w => w.ServiceDetails)
-													  .HasForeignKey(sd => sd.ServiceId),
+					.UsingEntity<JobDetail>(j => j.HasOne(sd => sd.Job)
+													  .WithMany(w => w.JobDetails)
+													  .HasForeignKey(sd => sd.JobId),
 
 												j => j.HasOne(sd => sd.Worker)
-														.WithMany(s => s.ServiceDetails)
+														.WithMany(s => s.JobDetails)
 														.HasForeignKey(sd => sd.WorkerId),
 
 												j =>
 												{
-													j.ToTable("ServiceDetails");
+													j.ToTable("JobDetails");
 													j.HasKey(sd => sd.Id);
 													j.Property(sd => sd.Id).ValueGeneratedOnAdd();
 													j.Ignore(sd => sd.IsActive);

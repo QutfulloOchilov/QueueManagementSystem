@@ -25,9 +25,9 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpGet("[action]/{workerId}")]
-		public async Task<ActionResult<IEnumerable<WorkerServiceViewModel>>> GetServices(Guid workerId)
+		public async Task<ActionResult<IEnumerable<WorkerJobViewModel>>> GetJobs(Guid workerId)
 		{
-			return Ok(await Service.GetServices(workerId));
+			return Ok(await Service.GetJobs(workerId));
 		}
 
 		[HttpGet("[action]/{workerId}")]
@@ -43,16 +43,16 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public async Task<IActionResult> AddService([FromBody] AddServiceQueryModel model)
+		public async Task<IActionResult> AddJob([FromBody] AddJobQueryModel model)
 		{
-			await Service.AddService(model);
+			await Service.AddJob(model);
 			return Ok();
 		}
 
 		[HttpPut("[action]")]
-		public async Task<IActionResult> UpdateService([FromBody] UpdateServiceQueryModel model)
+		public async Task<IActionResult> UpdateJob([FromBody] UpdateJobQueryModel model)
 		{
-			await Service.UpdateService(model);
+			await Service.UpdateJob(model);
 			return Ok();
 		}
 
@@ -63,9 +63,9 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpDelete("[action]")]
-		public async Task<IActionResult> DeleteService([FromBody] DeleteServiceQueryModel model)
+		public async Task<IActionResult> DeleteJob([FromBody] DeleteJobQueryModel model)
 		{
-			await Service.DeleteService(model);
+			await Service.DeleteJob(model);
 			return Ok();
 		}
 	}

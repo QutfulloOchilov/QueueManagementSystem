@@ -4,11 +4,11 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 {
-	public class ServiceConfiguration : IEntityTypeConfiguration<Service>
+	public class JobConfiguration : IEntityTypeConfiguration<Job>
 	{
-		public void Configure(EntityTypeBuilder<Service> builder)
+		public void Configure(EntityTypeBuilder<Job> builder)
 		{
-			builder.ToTable("Services");
+			builder.ToTable("Jobs");
 
 			builder.HasKey(s => s.Id);
 

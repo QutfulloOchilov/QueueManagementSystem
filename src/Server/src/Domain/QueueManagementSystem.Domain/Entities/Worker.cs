@@ -7,16 +7,16 @@ namespace QueueManagementSystem.Domain.Entities
 	{
 		public Worker()
 		{
-			ServiceDetails = new List<ServiceDetail>();
+			JobDetails = new List<JobDetail>();
 			Feedbacks = new List<Feedback>();
 			WorkerSchedules = new List<WorkerSchedule>();
-			Services = new List<Service>();
+			Jobs = new List<Job>();
 		}
 		public virtual Business Business { get; set; }
 		public Guid BusinessId { get; set; }
-		public virtual List<ServiceDetail> ServiceDetails { get; set; }
+		public virtual List<JobDetail> JobDetails { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }
 		public virtual List<WorkerSchedule> WorkerSchedules { get; set; }
-		public virtual List<Service> Services { get; set; }
+		public virtual List<Job> Jobs { get; set; }
 	}
 }

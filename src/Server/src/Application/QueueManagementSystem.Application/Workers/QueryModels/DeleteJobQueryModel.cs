@@ -2,9 +2,9 @@
 
 namespace QueueManagementSystem.Application.Workers.QueryModels
 {
-	public class DeleteServiceQueryModel
+	public class DeleteJobQueryModel
 	{
 		public Guid WorkerId { get; set; }
-		public Guid ServiceDetailId { get; set; }
+		public Guid JobDetailId { get; set; }
 	}
 }

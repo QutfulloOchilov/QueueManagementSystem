@@ -3,7 +3,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-	public interface IServiceDetailRepository : IRepository<ServiceDetail>
+	public interface IJobDetailRepository : IRepository<JobDetail>
 	{
 	}
 }
