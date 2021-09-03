@@ -15,14 +15,14 @@ namespace QueueManagementSystem.Services
 {
 	public class UserService : BaseService<User, UserViewModel, UserBaseQueryModel>, IUserService
 	{
-		private readonly IServiceDetailRepository serviceDetailRepo;
+		private readonly IJobDetailRepository jobDetailRepo;
 		private readonly IMapper mapper;
 		private readonly IWorkerRepository workerRepo;
 
-		public UserService(IUnitOfWork unitOfWork, IUserRepository repository, IWorkerRepository _workerRepo, IServiceDetailRepository _serviceDetailRepo, IMapper _mapper)
+		public UserService(IUnitOfWork unitOfWork, IUserRepository repository, IWorkerRepository _workerRepo, IJobDetailRepository _jobDetailRepo, IMapper _mapper)
 			: base(unitOfWork, repository, _mapper)
 		{
-			serviceDetailRepo = _serviceDetailRepo;
+			jobDetailRepo = _jobDetailRepo;
 			mapper = _mapper;
 			workerRepo = _workerRepo;
 		}
@@ -30,10 +30,10 @@ namespace QueueManagementSystem.Services
 		public async Task<UserReservationViewModel> ReserveHaircut(ReserveHaircutQueryModel model)
 		{
 			var user = await Repository.GetByIdAsync(model.UserId);
-			var serviceDetail = await serviceDetailRepo.GetByIdAsync(model.ServiceDetailId);
+			var jobDetail = await jobDetailRepo.GetByIdAsync(model.JobDetailId);
 
-			if (serviceDetail == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
+			if (jobDetail == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
 
 			var haircutReservation = mapper.Map<HaircutReservation>(model);
 			user.Reservations.Add(haircutReservation);
@@ -64,9 +64,9 @@ namespace QueueManagementSystem.Services
 			List<TimeIntervalViewModel> reservations = new List<TimeIntervalViewModel>();
 
 			var worker = await workerRepo.GetByIdAsync(model.WorkerId);
-			int duration = worker.ServiceDetails.Find(sd => sd.ServiceId == model.ServiceId).Duration;
+			int duration = worker.JobDetails.Find(sd => sd.JobId == model.JobId).Duration;
 
-			worker.ServiceDetails.Where(sd => sd.ServiceId == model.ServiceId).ToList().ForEach(sd =>
+			worker.JobDetails.Where(sd => sd.JobId == model.JobId).ToList().ForEach(sd =>
 			{
 				sd.HaircutReservations.Where(hr => hr.From.Date == model.ReservationDate.Date).ToList().ForEach(res => reservations.Add(new TimeIntervalViewModel()
 				{

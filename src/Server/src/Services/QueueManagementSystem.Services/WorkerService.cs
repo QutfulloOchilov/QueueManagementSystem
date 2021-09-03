@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using QueueManagementSystem.Application.Abstraction;
+using QueueManagementSystem.Application.Feedbacks.QueryModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
+using QueueManagementSystem.Application.Feedbacks.Services;
+using QueueManagementSystem.Application.Feedbacks.ViewModels;
 using QueueManagementSystem.Application.Repositories;
 using QueueManagementSystem.Application.Workers.QueryModels;
 using QueueManagementSystem.Application.Workers.Services;
@@ -14,62 +18,117 @@ namespace QueueManagementSystem.Services
 {
 	public class WorkerService : BaseService<Worker, WorkerViewModel, WorkerBaseQueryModel>, IWorkerService
 	{
-		private readonly IServiceRepository serviceRepo;
+		private readonly IFeedbackService feedbackService;
+		private readonly IJobRepository jobRepo;
 		private readonly IMapper mapper;
 
-		public WorkerService(IUnitOfWork unitOfWork, IWorkerRepository repository, IServiceRepository _serviceRepo, IMapper _mapper)
+		public WorkerService(IUnitOfWork unitOfWork, IWorkerRepository repository, IJobRepository _jobRepo,
+			IFeedbackService _feedbackService, IMapper _mapper)
 			: base(unitOfWork, repository, _mapper)
 		{
-			serviceRepo = _serviceRepo;
+			feedbackService = _feedbackService;
+			jobRepo = _jobRepo;
 			mapper = _mapper;
 		}
 
-		public async Task AddService(AddServiceQueryModel model)
+		public async Task AddJob(AddJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var service = await serviceRepo.GetByIdAsync(model.ServiceId);
+			var job = await jobRepo.GetByIdAsync(model.JobId);
 
-			if (service == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
+			if (job == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
 
-			worker.ServiceDetails.Add(mapper.Map<ServiceDetail>(model));
+			worker.JobDetails.Add(mapper.Map<JobDetail>(model));
 			await UnitOfWork.SaveChangesAsync();
 		}
 
-		public async Task<IEnumerable<WorkerServiceViewModel>> GetServices(Guid workerId)
+		public async Task<IEnumerable<WorkerJobViewModel>> GetJobs(Guid workerId)
 		{
 			var worker = await Repository.GetByIdAsync(workerId);
-			var services = worker.ServiceDetails;
-			return mapper.Map<IEnumerable<ServiceDetail>, IEnumerable<WorkerServiceViewModel>>(services);
+			var jobs = worker.JobDetails;
+			return mapper.Map<IEnumerable<JobDetail>, IEnumerable<WorkerJobViewModel>>(jobs);
 		}
 
-		public async Task UpdateService(UpdateServiceQueryModel model)
+		public async Task UpdateJob(UpdateJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var serviceDetail = worker.ServiceDetails.FirstOrDefault(sd => sd.Id == model.ServiceDetailId);
-			if (serviceDetail == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
-			mapper.Map(model, serviceDetail);
+			var jobDetail = worker.JobDetails.FirstOrDefault(sd => sd.Id == model.JobDetailId);
+			if (jobDetail == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
+			mapper.Map(model, jobDetail);
 			await UnitOfWork.SaveChangesAsync();
 		}
 
-		public async Task DeleteService(DeleteServiceQueryModel model)
+		public async Task DeleteJob(DeleteJobQueryModel model)
 		{
 			var worker = await Repository.GetByIdAsync(model.WorkerId);
-			var serviceDetail = worker.ServiceDetails.FirstOrDefault(sd => sd.Id == model.ServiceDetailId);
-			if (serviceDetail == null)
-				throw new BusinessLogicException("Service was not found with a provided Id.");
-			worker.ServiceDetails.Remove(serviceDetail);
+			var jobDetail = worker.JobDetails.FirstOrDefault(sd => sd.Id == model.JobDetailId);
+			if (jobDetail == null)
+				throw new BusinessLogicException("Job was not found with a provided Id.");
+			worker.JobDetails.Remove(jobDetail);
 			await UnitOfWork.SaveChangesAsync();
 		}
 
 		public async Task<IEnumerable<WorkerReservationViewModel>> GetReservations(Guid workerId)
 		{
 			List<HaircutReservation> reservations = new List<HaircutReservation>();
-			var a = (await Repository.GetByIdAsync(workerId)).ServiceDetails;
-			(await Repository.GetByIdAsync(workerId)).ServiceDetails.ForEach(sd => reservations.AddRange(sd.HaircutReservations));
+			var a = (await Repository.GetByIdAsync(workerId)).JobDetails;
+			(await Repository.GetByIdAsync(workerId)).JobDetails.ForEach(sd => reservations.AddRange(sd.HaircutReservations));
 
 			return mapper.Map<IEnumerable<WorkerReservationViewModel>>(reservations);
+		}
+
+		public async Task<FeedbackViewModel> GiveFeedback(InsertFeedbackToWorkerQueryModel model)
+		{
+			var worker = await Repository.GetByIdAsync(model.WorkerId);
+
+			if (worker == null)
+				throw new BusinessLogicException("Worker was not found with the provided Id.");
+			if (!worker.IsFeedbackAllowed)
+				throw new BusinessLogicException("The worker with provided Id doesn't allow feedback.");
+
+			return await feedbackService.Create(model);
+		}
+
+		public async Task<IEnumerable<FeedbackViewModel>> GetFeedbacks(Guid workerId)
+		{
+			var worker = await Repository.GetByIdAsync(workerId);
+
+			if (worker == null)
+				throw new BusinessLogicException("Worker was not found with the provided Id.");
+
+			return Mapper.Map<IEnumerable<FeedbackViewModel>>(worker.Feedbacks);
+		}
+
+		public async Task<FeedbackViewModel> GetFeedback(Guid id)
+		{
+			var feedback = await feedbackService.GetById(id);
+
+			if (feedback == null)
+				throw new BusinessLogicException("Feedback was not found with the provided Id.");
+
+			return feedback;
+		}
+
+		public async Task DeleteFeedback(Guid id)
+		{
+			var feedback = await feedbackService.GetById(id);
+
+			if (feedback == null)
+				throw new BusinessLogicException("Feedback was not found with the provided Id.");
+
+			await feedbackService.Delete(id);
+		}
+
+		public async Task<FeedbackViewModel> EditFeedback(EditFeedbackQueryModel model)
+		{
+			var feedback = await feedbackService.GetById(model.Id);
+
+			if (feedback == null)
+				throw new BusinessLogicException("Feedback was not found with the provided Id.");
+
+			return await feedbackService.Update(model);
 		}
 	}
 }

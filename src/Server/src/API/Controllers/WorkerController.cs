@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QueueManagementSystem.Application.Feedbacks.QueryModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
+using QueueManagementSystem.Application.Feedbacks.ViewModels;
 using QueueManagementSystem.Application.Workers.QueryModels;
 using QueueManagementSystem.Application.Workers.QueryModels.Common;
 using QueueManagementSystem.Application.Workers.QueryModels.Insert;
@@ -25,9 +28,9 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpGet("[action]/{workerId}")]
-		public async Task<ActionResult<IEnumerable<WorkerServiceViewModel>>> GetServices(Guid workerId)
+		public async Task<ActionResult<IEnumerable<WorkerJobViewModel>>> GetJobs(Guid workerId)
 		{
-			return Ok(await Service.GetServices(workerId));
+			return Ok(await Service.GetJobs(workerId));
 		}
 
 		[HttpGet("[action]/{workerId}")]
@@ -43,16 +46,16 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public async Task<IActionResult> AddService([FromBody] AddServiceQueryModel model)
+		public async Task<IActionResult> AddJob([FromBody] AddJobQueryModel model)
 		{
-			await Service.AddService(model);
+			await Service.AddJob(model);
 			return Ok();
 		}
 
 		[HttpPut("[action]")]
-		public async Task<IActionResult> UpdateService([FromBody] UpdateServiceQueryModel model)
+		public async Task<IActionResult> UpdateJob([FromBody] UpdateJobQueryModel model)
 		{
-			await Service.UpdateService(model);
+			await Service.UpdateJob(model);
 			return Ok();
 		}
 
@@ -63,10 +66,41 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpDelete("[action]")]
-		public async Task<IActionResult> DeleteService([FromBody] DeleteServiceQueryModel model)
+		public async Task<IActionResult> DeleteJob([FromBody] DeleteJobQueryModel model)
 		{
-			await Service.DeleteService(model);
+			await Service.DeleteJob(model);
 			return Ok();
+		}
+
+		[HttpPost("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> GiveFeedback([FromBody] InsertFeedbackToWorkerQueryModel model)
+		{
+			return Ok(await Service.GiveFeedback(model));
+		}
+
+		[HttpGet("[action]/{workerId}")]
+		public async Task<ActionResult<IEnumerable<FeedbackViewModel>>> GetFeedbacks(Guid workerId)
+		{
+			return Ok(await Service.GetFeedbacks(workerId));
+		}
+
+		[HttpGet("[action]/{feedbackId}")]
+		public async Task<ActionResult<FeedbackViewModel>> GetFeedback(Guid feedbackId)
+		{
+			return Ok(await Service.GetFeedback(feedbackId));
+		}
+
+		[HttpDelete("[action]/{feedbackId}")]
+		public async Task<ActionResult> DeleteFeedback(Guid feedbackId)
+		{
+			await Service.DeleteFeedback(feedbackId);
+			return NoContent();
+		}
+
+		[HttpPut("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> EditFeedback([FromBody] EditFeedbackQueryModel model)
+		{
+			return Ok(await Service.EditFeedback(model));
 		}
 	}
 }

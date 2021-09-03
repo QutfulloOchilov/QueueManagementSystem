@@ -7,8 +7,8 @@ namespace QueueManagementSystem.Application.Workers.QueryModels.Common
 {
     public class WorkerQueryModel : WorkerBaseQueryModel
     {
-        public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string MiddleName { get; set; }
         
         [JsonConverter(typeof(GenderConverter))]
@@ -16,7 +16,8 @@ namespace QueueManagementSystem.Application.Workers.QueryModels.Common
 
 		[JsonConverter(typeof(ShortDateTimeConverter))]
 		public DateTime Birthdate { get; set; }
-        public string PhoneNumber { get; set; }
+		public bool IsFeedbackAllowed { get; set; }
+		public string PhoneNumber { get; set; }
         public string Email { get; set; }
 		public Guid BusinessId { get; set; }
 	}

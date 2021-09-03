@@ -8,10 +8,10 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 	{
 		private IUserRepository userRepo;
 		private IBusinessRepository businessRepo;
-		private IServiceRepository serviceRepo;
+		private IJobRepository serviceRepo;
 		private IWorkerRepository workerRepo;
 		private IFeedbackRepository feedbackRepo;
-		private IServiceDetailRepository serviceDetailsRepo;
+		private IJobDetailRepository jobDetailsRepo;
 		private IContext db;
 
 		public RepositoryWrapper(IContext _db)
@@ -39,12 +39,12 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IServiceRepository Services
+		public IJobRepository Services
 		{
 			get
 			{
 				if (serviceRepo == null)
-					serviceRepo = new ServiceRepository(db);
+					serviceRepo = new JobRepository(db);
 				return serviceRepo;
 			}
 		}
@@ -69,13 +69,13 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 			}
 		}
 
-		public IServiceDetailRepository ServiceDetails
+		public IJobDetailRepository JobDetails
 		{
 			get
 			{
-				if (serviceDetailsRepo == null)
-					serviceDetailsRepo = new ServiceDetailRepository(db);
-				return serviceDetailsRepo;
+				if (jobDetailsRepo == null)
+					jobDetailsRepo = new JobDetailRepository(db);
+				return jobDetailsRepo;
 			}
 		}
 

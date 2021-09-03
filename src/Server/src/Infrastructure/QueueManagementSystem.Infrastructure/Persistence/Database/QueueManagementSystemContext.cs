@@ -156,7 +156,7 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(BusinessConfiguration).Assembly);
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerScheduleConfiguration).Assembly);
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeedbackConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(ServiceConfiguration).Assembly);
+			modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobConfiguration).Assembly);
 
 		}
 

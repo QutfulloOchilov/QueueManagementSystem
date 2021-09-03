@@ -20,13 +20,11 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 			builder.Property(u => u.LastName)
 					.IsRequired();
 
-
-
-			builder.HasMany(u => u.ServiceDetails)
+			builder.HasMany(u => u.JobDetails)
 					.WithMany(w => w.Users)
-					.UsingEntity<HaircutReservation>(j => j.HasOne(hr => hr.ServiceDetail)
+					.UsingEntity<HaircutReservation>(j => j.HasOne(hr => hr.JobDetail)
 														   .WithMany(sd => sd.HaircutReservations)
-														   .HasForeignKey(hr => hr.ServiceDetailId),
+														   .HasForeignKey(hr => hr.JobDetailId),
 
 													 j => j.HasOne(hr => hr.User)
 															.WithMany(u => u.Reservations)

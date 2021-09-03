@@ -8,11 +8,11 @@ namespace QueueManagementSystem.Domain.Entities
 		{
 			Reservations = new List<HaircutReservation>();
 			Feedbacks = new List<Feedback>();
-			ServiceDetails = new List<ServiceDetail>();
+			JobDetails = new List<JobDetail>();
 		}
 
 		public virtual List<HaircutReservation> Reservations { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }
-		public virtual List<ServiceDetail> ServiceDetails { get; set; }
+		public virtual List<JobDetail> JobDetails { get; set; }
 	}
 }

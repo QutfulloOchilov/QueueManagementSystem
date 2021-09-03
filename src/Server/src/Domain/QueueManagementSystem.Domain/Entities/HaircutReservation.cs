@@ -6,8 +6,8 @@ namespace QueueManagementSystem.Domain.Entities
 	{
 		public virtual User User { get; set; }
 		public Guid UserId { get; set; }
-		public virtual ServiceDetail ServiceDetail { get; set; }
-		public Guid ServiceDetailId { get; set; }
+		public virtual JobDetail JobDetail { get; set; }
+		public Guid JobDetailId { get; set; }
 		public DateTime From { get; set; }
 		public DateTime To { get; set; }
 	}

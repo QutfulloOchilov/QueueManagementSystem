@@ -57,7 +57,7 @@ namespace QueueManagementSystem.API.Controllers
 		}
 
 		[HttpGet("[action]")]
-		public async Task<ActionResult<FreeTimeViewModel>> GetFreeTime(GetFreeTimeQueryModel model)
+		public async Task<ActionResult<FreeTimeViewModel>> GetFreeTime([FromBody] GetFreeTimeQueryModel model)
 		{
 			return Ok(await Service.GetFreeTime(model));
 		}

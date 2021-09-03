@@ -4,6 +4,9 @@ using QueueManagementSystem.Application.Businesses.QueryModels.Common;
 using QueueManagementSystem.Application.Businesses.QueryModels.Insert;
 using QueueManagementSystem.Application.Businesses.Services;
 using QueueManagementSystem.Application.Businesses.ViewModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
+using QueueManagementSystem.Application.Feedbacks.ViewModels;
 using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
 using System;
@@ -41,6 +44,37 @@ namespace QueueManagementSystem.API.Controllers
 		public async Task<ActionResult<BusinessViewModel>> Update([FromBody] BusinessQueryModel model)
 		{
 			return Ok(await base.Update(model));
+		}
+
+		[HttpPost("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> GiveFeedback([FromBody] InsertFeedbackToBusinessQueryModel model)
+		{
+			return Ok(await Service.GiveFeedback(model));
+		}
+
+		[HttpGet("[action]/{businessId}")]
+		public async Task<ActionResult<IEnumerable<FeedbackViewModel>>> GetFeedbacks(Guid businessId)
+		{
+			return Ok(await Service.GetFeedbacks(businessId));
+		}
+
+		[HttpGet("[action]/{feedbackId}")]
+		public async Task<ActionResult<FeedbackViewModel>> GetFeedback(Guid feedbackId)
+		{
+			return Ok(await Service.GetFeedback(feedbackId));
+		}
+
+		[HttpDelete("[action]/{feedbackId}")]
+		public async Task<ActionResult> DeleteFeedback(Guid feedbackId)
+		{
+			await Service.DeleteFeedback(feedbackId);
+			return NoContent();
+		}
+
+		[HttpPut("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> EditFeedback([FromBody] EditFeedbackQueryModel model)
+		{
+			return Ok(await Service.EditFeedback(model));
 		}
 	}
 }

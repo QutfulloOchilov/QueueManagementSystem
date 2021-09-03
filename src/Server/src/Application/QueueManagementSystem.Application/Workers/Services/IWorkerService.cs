@@ -1,4 +1,7 @@
-﻿using QueueManagementSystem.Application.Services;
+﻿using QueueManagementSystem.Application.Feedbacks.QueryModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
+using QueueManagementSystem.Application.Feedbacks.ViewModels;
+using QueueManagementSystem.Application.Services;
 using QueueManagementSystem.Application.Workers.QueryModels;
 using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
@@ -10,10 +13,15 @@ namespace QueueManagementSystem.Application.Workers.Services
 {
 	public interface IWorkerService : IService<Worker, WorkerViewModel, WorkerBaseQueryModel>
 	{
-		Task AddService(AddServiceQueryModel model);
-		Task<IEnumerable<WorkerServiceViewModel>> GetServices(Guid workerId);
-		Task UpdateService(UpdateServiceQueryModel model);
-		Task DeleteService(DeleteServiceQueryModel model);
+		Task AddJob(AddJobQueryModel model);
+		Task<IEnumerable<WorkerJobViewModel>> GetJobs(Guid workerId);
+		Task UpdateJob(UpdateJobQueryModel model);
+		Task DeleteJob(DeleteJobQueryModel model);
 		Task<IEnumerable<WorkerReservationViewModel>> GetReservations(Guid workerId);
+		Task<FeedbackViewModel> GiveFeedback(InsertFeedbackToWorkerQueryModel model);
+		Task<IEnumerable<FeedbackViewModel>> GetFeedbacks(Guid workerId);
+		Task<FeedbackViewModel> GetFeedback(Guid id);
+		Task DeleteFeedback(Guid id);
+		Task<FeedbackViewModel> EditFeedback(EditFeedbackQueryModel model);
 	}
 }
