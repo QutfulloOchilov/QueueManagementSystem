@@ -6,8 +6,6 @@ namespace QueueManagementSystem.Application.Feedbacks.QueryModels.Common
 {
 	public class FeedbackQueryModel : FeedbackBaseQueryModel
 	{
-		public Guid WorkerId { get; set; }
-		public Guid BusinessId { get; set; }
 		public Guid UserId { get; set; }
 
 		[JsonConverter(typeof(ShortDateTimeConverter))]

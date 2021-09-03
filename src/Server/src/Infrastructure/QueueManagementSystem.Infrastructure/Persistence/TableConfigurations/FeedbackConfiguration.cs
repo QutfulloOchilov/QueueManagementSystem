@@ -23,15 +23,17 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 
 			builder.HasOne(f => f.Business)
 					.WithMany(b => b.Feedbacks)
-					.HasForeignKey(f => f.BusinessId);
+					.HasForeignKey(f => f.BusinessId)
+					.OnDelete(DeleteBehavior.ClientCascade);
 
 			builder.HasOne(f => f.Worker)
 					.WithMany(w => w.Feedbacks)
 					.HasForeignKey(f => f.WorkerId)
-					.OnDelete(DeleteBehavior.NoAction);
+					.OnDelete(DeleteBehavior.ClientCascade);
 
 			builder.HasOne(f => f.User)
 					.WithMany(u => u.Feedbacks)
+					.IsRequired()
 					.HasForeignKey(f => f.UserId);
 		}
 	}

@@ -7,8 +7,8 @@ namespace QueueManagementSystem.Application.Workers.QueryModels.Common
 {
     public class WorkerQueryModel : WorkerBaseQueryModel
     {
-        public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string MiddleName { get; set; }
         
         [JsonConverter(typeof(GenderConverter))]

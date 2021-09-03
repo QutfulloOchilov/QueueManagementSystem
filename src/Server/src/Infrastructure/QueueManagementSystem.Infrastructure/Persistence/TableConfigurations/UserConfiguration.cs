@@ -20,8 +20,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 			builder.Property(u => u.LastName)
 					.IsRequired();
 
-
-
 			builder.HasMany(u => u.JobDetails)
 					.WithMany(w => w.Users)
 					.UsingEntity<HaircutReservation>(j => j.HasOne(hr => hr.JobDetail)
