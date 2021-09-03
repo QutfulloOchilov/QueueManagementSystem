@@ -52,22 +52,22 @@ namespace QueueManagementSystem.API.Controllers
 			return Ok(await Service.GiveFeedback(model));
 		}
 
-		[HttpGet("[action]/{id}")]
-		public async Task<ActionResult<IEnumerable<FeedbackViewModel>>> GetFeedbacks(Guid id)
+		[HttpGet("[action]/{businessId}")]
+		public async Task<ActionResult<IEnumerable<FeedbackViewModel>>> GetFeedbacks(Guid businessId)
 		{
-			return Ok(await Service.GetFeedbacks(id));
+			return Ok(await Service.GetFeedbacks(businessId));
 		}
 
-		[HttpGet("[action]/{id}")]
-		public async Task<ActionResult<FeedbackViewModel>> GetFeedback(Guid id)
+		[HttpGet("[action]/{feedbackId}")]
+		public async Task<ActionResult<FeedbackViewModel>> GetFeedback(Guid feedbackId)
 		{
-			return Ok(await Service.GetFeedback(id));
+			return Ok(await Service.GetFeedback(feedbackId));
 		}
 
-		[HttpDelete("[action]/{id}")]
-		public async Task<ActionResult> DeleteFeedback(Guid id)
+		[HttpDelete("[action]/{feedbackId}")]
+		public async Task<ActionResult> DeleteFeedback(Guid feedbackId)
 		{
-			await Service.DeleteFeedback(id);
+			await Service.DeleteFeedback(feedbackId);
 			return NoContent();
 		}
 

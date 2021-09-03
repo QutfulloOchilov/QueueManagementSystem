@@ -12,6 +12,7 @@ namespace QueueManagementSystem.Application.Mapper
 		{
 			BuildMap<Feedback, FeedbackQueryModel>();
 			BuildMap<Feedback, InsertFeedbackToBusinessQueryModel>();
+			BuildMap<Feedback, InsertFeedbackToWorkerQueryModel>();
 			BuildMap<Feedback, EditFeedbackQueryModel>();
 
 			CreateMap<Feedback, FeedbackViewModel>()

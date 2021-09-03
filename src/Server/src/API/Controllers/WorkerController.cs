@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QueueManagementSystem.Application.Feedbacks.QueryModels;
+using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
+using QueueManagementSystem.Application.Feedbacks.ViewModels;
 using QueueManagementSystem.Application.Workers.QueryModels;
 using QueueManagementSystem.Application.Workers.QueryModels.Common;
 using QueueManagementSystem.Application.Workers.QueryModels.Insert;
@@ -67,6 +70,37 @@ namespace QueueManagementSystem.API.Controllers
 		{
 			await Service.DeleteJob(model);
 			return Ok();
+		}
+
+		[HttpPost("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> GiveFeedback([FromBody] InsertFeedbackToWorkerQueryModel model)
+		{
+			return Ok(await Service.GiveFeedback(model));
+		}
+
+		[HttpGet("[action]/{workerId}")]
+		public async Task<ActionResult<IEnumerable<FeedbackViewModel>>> GetFeedbacks(Guid workerId)
+		{
+			return Ok(await Service.GetFeedbacks(workerId));
+		}
+
+		[HttpGet("[action]/{feedbackId}")]
+		public async Task<ActionResult<FeedbackViewModel>> GetFeedback(Guid feedbackId)
+		{
+			return Ok(await Service.GetFeedback(feedbackId));
+		}
+
+		[HttpDelete("[action]/{feedbackId}")]
+		public async Task<ActionResult> DeleteFeedback(Guid feedbackId)
+		{
+			await Service.DeleteFeedback(feedbackId);
+			return NoContent();
+		}
+
+		[HttpPut("[action]")]
+		public async Task<ActionResult<FeedbackViewModel>> EditFeedback([FromBody] EditFeedbackQueryModel model)
+		{
+			return Ok(await Service.EditFeedback(model));
 		}
 	}
 }
