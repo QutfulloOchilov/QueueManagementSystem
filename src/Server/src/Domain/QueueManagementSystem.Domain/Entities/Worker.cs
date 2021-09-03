@@ -14,6 +14,7 @@ namespace QueueManagementSystem.Domain.Entities
 		}
 		public virtual Business Business { get; set; }
 		public Guid BusinessId { get; set; }
+		public bool IsFeedbackAllowed { get; set; }
 		public virtual List<JobDetail> JobDetails { get; set; }
 		public virtual List<Feedback> Feedbacks { get; set; }
 		public virtual List<WorkerSchedule> WorkerSchedules { get; set; }

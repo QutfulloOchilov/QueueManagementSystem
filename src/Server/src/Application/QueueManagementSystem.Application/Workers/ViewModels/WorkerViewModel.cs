@@ -17,6 +17,7 @@ namespace QueueManagementSystem.Application.Workers.ViewModels
 
 		[JsonConverter(typeof(ShortDateTimeConverter))]
 		public DateTime Birthdate { get; set; }
+		public bool IsFeedbackAllowed { get; set; }
 		public string PhoneNumber { get; set; }
 		public string Email { get; set; }
 	}

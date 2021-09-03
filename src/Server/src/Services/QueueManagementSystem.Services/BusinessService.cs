@@ -42,6 +42,8 @@ namespace QueueManagementSystem.Services
 
 			if (business == null)
 				throw new BusinessLogicException("Business was not found with the provided Id.");
+			if (!business.IsFeedbackAllowed)
+				throw new BusinessLogicException("The worker with provided Id doesn't allow feedback.");
 
 			return await feedbackService.Create(model);
 		}

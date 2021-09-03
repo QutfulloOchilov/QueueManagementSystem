@@ -85,6 +85,8 @@ namespace QueueManagementSystem.Services
 
 			if (worker == null)
 				throw new BusinessLogicException("Worker was not found with the provided Id.");
+			if (!worker.IsFeedbackAllowed)
+				throw new BusinessLogicException("The worker with provided Id doesn't allow feedback.");
 
 			return await feedbackService.Create(model);
 		}
