@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Businesses.Services;
+using QueueManagementSystem.Application.Categories.Services;
 using QueueManagementSystem.Application.Feedbacks.Services;
 using QueueManagementSystem.Application.Jobs.Services;
 using QueueManagementSystem.Application.Mapper;
@@ -46,6 +47,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
 			repository.AddScoped<IUserRepository, UserRepository>();
 			repository.AddScoped<IJobDetailRepository, JobDetailRepository>();
 			repository.AddScoped<IFeedbackRepository, FeedbackRepository>();
+			repository.AddScoped<ICategoryRepository, CategoryRepository>();
 		}
 
 		private static void BuildServices(IServiceCollection service)
@@ -56,6 +58,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
 			service.AddScoped<IJobService, JobService>();
 			service.AddScoped<IUserService, UserService>();
 			service.AddScoped<IFeedbackService, FeedbackService>();
+			service.AddScoped<ICategoryService, CategoryService>();
 		}
 	}
 }

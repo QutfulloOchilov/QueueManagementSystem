@@ -7,5 +7,6 @@ namespace QueueManagementSystem.Application.Jobs.Services
 {
 	public interface IJobService : IService<Job, JobViewModel, JobBaseQueryModel>
 	{
+
 	}
 }
