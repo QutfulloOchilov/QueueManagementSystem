@@ -1,229 +1,234 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using Microsoft.Extensions.Configuration;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Domain.Entities;
 using QueueManagementSystem.Domain.Interfaces;
 using QueueManagementSystem.Infrastructure.Persistence.TableConfigurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Database
 {
-	public class QueueManagementSystemContext : DbContext, IContext
-	{
-		public QueueManagementSystemContext(DbContextOptions<QueueManagementSystemContext> dbContextOptions)
-			: base(dbContextOptions)
-		{
-			OptionBuilder = dbContextOptions;
-		}
+    public class QueueManagementSystemContext : DbContext, IContext
+    {
+        public QueueManagementSystemContext(DbContextOptions<QueueManagementSystemContext> dbContextOptions)
+            : base(dbContextOptions)
+        {
+            OptionBuilder = dbContextOptions;
+        }
 
-		public QueueManagementSystemContext() { }
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			var extension = optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>();
-			IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-			string connectionString = configuration["ConnectionStrings:sqlServer"];
-			if (extension != null)
-				connectionString = extension.ConnectionString;
-
-			optionsBuilder.UseLazyLoadingProxies();
-			optionsBuilder.UseSqlServer(connectionString);
-		}
+        public QueueManagementSystemContext()
+        {
+        }
 
 
-		public DbContextOptions OptionBuilder { get; }
+        public DbContextOptions OptionBuilder { get; }
 
-		public override int SaveChanges()
-		{
-			return base.SaveChanges();
-		}
+        public Guid Id { get; set; }
 
-		public Guid Id { get; set; }
-		public int? CommandTimeout
-		{
-			get => this.Database.GetCommandTimeout();
-			set => this.Database.SetCommandTimeout(value);
-		}
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
 
-		/// <summary>
-		/// Add new entity to context
-		/// </summary>
-		public void AddToContext<T>(T entity) where T : IEntity
-		{
-			Entry(entity as EntityBase).State = EntityState.Added;
-		}
+        public int? CommandTimeout
+        {
+            get => Database.GetCommandTimeout();
+            set => Database.SetCommandTimeout(value);
+        }
 
-		/// <summary>
-		/// Change a state of entity to deleted
-		/// </summary>
-		public void MarkDelete<T>(T entity) where T : IEntity
-		{
-			var entityBase = entity as EntityBase;
-			if (ChangeTracker.Entries().FirstOrDefault(e =>
-			{
-				return e.Entity is EntityBase serverEntityBase && serverEntityBase.Id == entityBase.Id;
-			})?.State == EntityState.Deleted)
-			{
-				throw new Exception("BaseStatus of serverEntity already is deleted");
-			}
-			Entry(entityBase).State = EntityState.Deleted;
-		}
+        /// <summary>
+        ///     Get entities from context
+        /// </summary>
+        public new IQueryable<T> Set<T>() where T : class, IEntity
+        {
+            return base.Set<T>();
+        }
 
-		/// <summary>
-		/// Get entities from context
-		/// </summary>
-		public new IQueryable<T> Set<T>() where T : class, IEntity
-		{
-			return base.Set<T>();
-		}
+        /// <summary>
+        ///     Get entity by guid
+        /// </summary>
+        public T GetById<T>(Guid guid) where T : class, IEntity
+        {
+            return Find<T>(guid);
+        }
 
-		/// <summary>
-		/// Get entity by guid
-		/// </summary>
-		public T GetById<T>(Guid guid) where T : class, IEntity
-		{
-			return this.Find<T>(guid);
-		}
+        /// <summary>
+        ///     Get entity by guid
+        /// </summary>
+        public Task<T> GetByIdAsync<T>(Guid id, CancellationToken cancellationToken = default) where T : class, IEntity
+        {
+            return FindAsync<T>(new object[] { id }, cancellationToken).AsTask();
+        }
 
-		/// <summary>
-		/// Get entity by guid
-		/// </summary>
-		public Task<T> GetByIdAsync<T>(Guid id, CancellationToken cancellationToken = default) where T : class, IEntity
-		{
-			return this.FindAsync<T>(new object[] { id }, cancellationToken).AsTask();
-		}
+        /// <summary>
+        ///     Update en entity
+        /// </summary>
+        public void Update<T>(Guid id, T entity) where T : class, IEntity
+        {
+            var oldEntity = Find<T>(id);
+            Entry(oldEntity).CurrentValues.SetValues(entity);
+        }
 
-		/// <summary>
-		/// Update en entity
-		/// </summary>
-		public void Update<T>(Guid id, T entity) where T : class, IEntity
-		{
-			var oldEntity = Find<T>(id);
-			Entry(oldEntity).CurrentValues.SetValues(entity);
-		}
+        /// <summary>
+        ///     Delete entity from context
+        /// </summary>
+        public void Delete<T>(T entity) where T : class, IEntity
+        {
+            Remove(entity);
+        }
 
-		/// <summary>
-		/// Delete entity from context
-		/// </summary>
-		public void Delete<T>(T entity) where T : class, IEntity
-		{
-			this.Remove(entity);
-		}
+        public bool HasChange()
+        {
+            return ChangeTracker.HasChanges();
+        }
 
-		public bool HasChange()
-		{
-			return ChangeTracker.HasChanges();
-		}
+        public void UndoChanges()
+        {
+            RollBack();
+        }
 
-		public void UndoChanges()
-		{
-			RollBack();
-		}
+        [Obsolete]
+        public int ExecuteSqlCommand(string sql, params object[] parameters)
+        {
+            //TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
+            //return this.Database.ExecuteSqlCommand(sql, parameters);
+            return Database.ExecuteSqlRaw(sql, parameters);
+        }
 
-		void RollBack()
-		{
-			var changedEntries = ChangeTracker.Entries()
-				.Where(x => x.State != EntityState.Unchanged).ToList();
+        [Obsolete]
+        public async Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
+        {
+            //TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
+            //return this.Database.ExecuteSqlCommandAsync(sql, parameters);
+            return await Database.ExecuteSqlRawAsync(sql, parameters);
+        }
 
-			foreach (var entry in changedEntries)
-			{
-				switch (entry.State)
-				{
-					case EntityState.Modified:
-						entry.CurrentValues.SetValues(entry.OriginalValues);
-						entry.State = EntityState.Unchanged;
-						break;
-					case EntityState.Added:
-						entry.State = EntityState.Detached;
-						break;
-					case EntityState.Deleted:
-						entry.State = EntityState.Unchanged;
-						break;
-				}
-			}
-		}
+        public void RemoveRange(IEnumerable<IEntity> entities)
+        {
+            base.RemoveRange(entities);
+        }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			modelBuilder.Ignore<EntityBase>();
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(BusinessConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerScheduleConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeedbackConfiguration).Assembly);
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobConfiguration).Assembly);
+        public void UpdateRange(IEnumerable<IEntity> entities)
+        {
+            base.UpdateRange(entities);
+        }
 
-		}
+        public Task AddRangeAsync(IEnumerable<IEntity> entities, CancellationToken cancellationToken = default)
+        {
+            return base.AddRangeAsync(entities, cancellationToken);
+        }
 
-		[Obsolete]
-		public int ExecuteSqlCommand(string sql, params object[] parameters)
-		{
-			//TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
-			//return this.Database.ExecuteSqlCommand(sql, parameters);
-			return this.Database.ExecuteSqlRaw(sql, parameters);
-		}
+        public void AddRange(IEnumerable<IEntity> entities)
+        {
+            base.AddRange(entities);
+        }
 
-		[Obsolete]
-		public async Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
-		{
-			//TODO: Shazod should research how use ExecuteSqlCommandAsync into ef core 5
-			//return this.Database.ExecuteSqlCommandAsync(sql, parameters);
-			return await this.Database.ExecuteSqlRawAsync(sql, parameters);
-		}
+        public void Add(IEntity entity)
+        {
+            base.Add(entity);
+        }
 
-		public void RemoveRange(IEnumerable<IEntity> entities)
-		{
-			base.RemoveRange(entities);
-		}
+        public Task AddAsync(IEntity entity)
+        {
+            return base.AddAsync(entity).AsTask();
+        }
 
-		public void UpdateRange(IEnumerable<IEntity> entities)
-		{
-			base.UpdateRange(entities);
-		}
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(cancellationToken);
+        }
 
-		public Task AddRangeAsync(IEnumerable<IEntity> entities, CancellationToken cancellationToken = default)
-		{
-			return base.AddRangeAsync(entities, cancellationToken);
-		}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var extension = optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            string connectionString = configuration["ConnectionStrings:sqlServer"];
+            if (extension != null)
+                connectionString = extension.ConnectionString;
 
-		public void AddRange(IEnumerable<IEntity> entities)
-		{
-			base.AddRange(entities);
-		}
+            optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseSqlServer(connectionString);
+        }
 
-		public void Add(IEntity entity)
-		{
-			base.Add(entity);
-		}
+        /// <summary>
+        ///     Add new entity to context
+        /// </summary>
+        public void AddToContext<T>(T entity) where T : IEntity
+        {
+            Entry(entity as EntityBase).State = EntityState.Added;
+        }
 
-		public Task AddAsync(IEntity entity)
-		{
-			return base.AddAsync(entity).AsTask();
-		}
+        /// <summary>
+        ///     Change a state of entity to deleted
+        /// </summary>
+        public void MarkDelete<T>(T entity) where T : IEntity
+        {
+            var entityBase = entity as EntityBase;
+            if (ChangeTracker.Entries().FirstOrDefault(e =>
+            {
+                return e.Entity is EntityBase serverEntityBase && serverEntityBase.Id == entityBase.Id;
+            })?.State == EntityState.Deleted)
+            {
+                throw new Exception("BaseStatus of serverEntity already is deleted");
+            }
 
-		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-		{
-			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-		}
+            Entry(entityBase).State = EntityState.Deleted;
+        }
 
-		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-		{
-			return base.SaveChangesAsync(cancellationToken);
-		}
+        void RollBack()
+        {
+            var changedEntries = ChangeTracker.Entries()
+                .Where(x => x.State != EntityState.Unchanged).ToList();
 
-		public override void Dispose()
-		{
-			base.Dispose();
-		}
+            foreach (var entry in changedEntries)
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.CurrentValues.SetValues(entry.OriginalValues);
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Unchanged;
+                        break;
+                }
+            }
+        }
 
-		public override ValueTask DisposeAsync()
-		{
-			return base.DisposeAsync();
-		}
-	}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<EntityBase>();
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BusinessConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerScheduleConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeedbackConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobConfiguration).Assembly);
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
+        public override ValueTask DisposeAsync()
+        {
+            return base.DisposeAsync();
+        }
+    }
 }

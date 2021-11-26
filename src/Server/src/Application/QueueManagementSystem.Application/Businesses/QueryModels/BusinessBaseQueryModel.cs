@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Businesses.QueryModels
 {
-	public class BusinessBaseQueryModel : BaseQueryModel
-	{
-
-	}
+    public class BusinessBaseQueryModel : BaseQueryModel
+    {
+    }
 }

@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj" />
-    <ProjectReference Include="..\..\Domain\QueueManagementSystem.Domain\QueueManagementSystem.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj"/>
+        <ProjectReference Include="..\..\Domain\QueueManagementSystem.Domain\QueueManagementSystem.Domain.csproj"/>
+    </ItemGroup>
 
 </Project>

@@ -5,8 +5,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Feedbacks.Services
 {
-	public interface IFeedbackService : IService<Feedback, FeedbackViewModel, FeedbackBaseQueryModel>
-	{
-
-	}
+    public interface IFeedbackService : IService<Feedback, FeedbackViewModel, FeedbackBaseQueryModel>
+    {
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace QueueManagementSystem.Application.Jobs.QueryModels
 {
-	public class JobBaseQueryModelValidator<TJobQueryModel> : BaseAbstractValidation<TJobQueryModel> where TJobQueryModel : JobBaseQueryModel
-	{
-
-	}
+    public class JobBaseQueryModelValidator<TJobQueryModel> : BaseAbstractValidation<TJobQueryModel>
+        where TJobQueryModel : JobBaseQueryModel
+    {
+    }
 }

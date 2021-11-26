@@ -2,7 +2,7 @@
 
 namespace QueueManagementSystem.Application.WorkerSchedules.QueryModels.Insert
 {
-	public class InsertWorkerScheduleQueryModel : WorkerScheduleQueryModel
-	{
-	}
+    public class InsertWorkerScheduleQueryModel : WorkerScheduleQueryModel
+    {
+    }
 }

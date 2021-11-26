@@ -7,6 +7,5 @@ namespace QueueManagementSystem.Application.ViewModels.Persons.Services
 {
     public interface IPersonService : IService<Person, PersonViewModel, PersonBaseQueryModel>
     {
-
     }
 }

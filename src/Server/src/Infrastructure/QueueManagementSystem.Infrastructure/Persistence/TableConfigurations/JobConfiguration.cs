@@ -4,20 +4,20 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 {
-	public class JobConfiguration : IEntityTypeConfiguration<Job>
-	{
-		public void Configure(EntityTypeBuilder<Job> builder)
-		{
-			builder.ToTable("Jobs");
+    public class JobConfiguration : IEntityTypeConfiguration<Job>
+    {
+        public void Configure(EntityTypeBuilder<Job> builder)
+        {
+            builder.ToTable("Jobs");
 
-			builder.HasKey(s => s.Id);
+            builder.HasKey(s => s.Id);
 
-			builder.Property(s => s.Id).ValueGeneratedOnAdd();
+            builder.Property(s => s.Id).ValueGeneratedOnAdd();
 
-			builder.Property(s => s.Name)
-					.IsRequired();
+            builder.Property(s => s.Name)
+                .IsRequired();
 
-			builder.Ignore(s => s.IsActive);
-		}
-	}
+            builder.Ignore(s => s.IsActive);
+        }
+    }
 }

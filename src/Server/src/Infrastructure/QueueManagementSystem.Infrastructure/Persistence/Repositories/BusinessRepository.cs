@@ -4,12 +4,11 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 {
-	public class BusinessRepository : BaseRepository<Business>, IBusinessRepository
-	{
-		public BusinessRepository(IContext _db)
-			: base(_db)
-		{
-
-		}
-	}
+    public class BusinessRepository : BaseRepository<Business>, IBusinessRepository
+    {
+        public BusinessRepository(IContext _db)
+            : base(_db)
+        {
+        }
+    }
 }

@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Feedbacks.QueryModels
 {
-	public class FeedbackBaseQueryModel : BaseQueryModel
-	{
-
-	}
+    public class FeedbackBaseQueryModel : BaseQueryModel
+    {
+    }
 }

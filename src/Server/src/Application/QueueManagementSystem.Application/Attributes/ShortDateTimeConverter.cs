@@ -4,16 +4,16 @@ using System.Text.Json.Serialization;
 
 namespace QueueManagementSystem.Application.Attributes
 {
-	public class ShortDateTimeConverter : JsonConverter<DateTime>
-	{
-		public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		{
-			return reader.GetDateTime();
-		}
+    public class ShortDateTimeConverter : JsonConverter<DateTime>
+    {
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            return reader.GetDateTime();
+        }
 
-		public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-		{
-			writer.WriteStringValue(value.ToString("yyyy-MM-dd HH:mm"));
-		}
-	}
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd HH:mm"));
+        }
+    }
 }

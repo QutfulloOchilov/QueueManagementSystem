@@ -3,11 +3,8 @@ using QueueManagementSystem.Application.WorkerSchedules.QueryModels.Insert;
 
 namespace QueueManagementSystem.Application.Businesses.QueryModels.Insert
 {
-	public class InsertWorkerScheduleQueryModelValidator : WorkerScheduleQueryModelValidator<InsertWorkerScheduleQueryModel>
-	{
-		public InsertWorkerScheduleQueryModelValidator() : base()
-		{
-
-		}
-	}
+    public class
+        InsertWorkerScheduleQueryModelValidator : WorkerScheduleQueryModelValidator<InsertWorkerScheduleQueryModel>
+    {
+    }
 }

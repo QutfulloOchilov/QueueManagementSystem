@@ -4,23 +4,23 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.TableConfigurations
 {
-	public class WorkerScheduleConfiguration : IEntityTypeConfiguration<WorkerSchedule>
-	{
-		public void Configure(EntityTypeBuilder<WorkerSchedule> builder)
-		{
-			builder.ToTable("WorkerSchedules");
+    public class WorkerScheduleConfiguration : IEntityTypeConfiguration<WorkerSchedule>
+    {
+        public void Configure(EntityTypeBuilder<WorkerSchedule> builder)
+        {
+            builder.ToTable("WorkerSchedules");
 
-			builder.HasKey(ws => ws.Id);
+            builder.HasKey(ws => ws.Id);
 
-			builder.Property(ws => ws.Id).ValueGeneratedOnAdd();
+            builder.Property(ws => ws.Id).ValueGeneratedOnAdd();
 
-			builder.Ignore(ws => ws.IsActive);
+            builder.Ignore(ws => ws.IsActive);
 
-			builder.HasOne(w => w.Worker)
-				.WithMany(w => w.WorkerSchedules)
-				.HasForeignKey(w => w.WorkerId)
-				.IsRequired()
-				.OnDelete(DeleteBehavior.Cascade);
-		}
-	}
+            builder.HasOne(w => w.Worker)
+                .WithMany(w => w.WorkerSchedules)
+                .HasForeignKey(w => w.WorkerId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
 }

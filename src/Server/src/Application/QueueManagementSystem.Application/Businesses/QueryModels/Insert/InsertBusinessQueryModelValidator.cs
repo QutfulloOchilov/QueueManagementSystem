@@ -2,11 +2,7 @@
 
 namespace QueueManagementSystem.Application.Businesses.QueryModels.Insert
 {
-	public class InsertBusinessQueryModelValidator : BusinessQueryModelValidator<InsertBusinessQueryModel>
-	{
-		public InsertBusinessQueryModelValidator() : base()
-		{
-			
-		}
-	}
+    public class InsertBusinessQueryModelValidator : BusinessQueryModelValidator<InsertBusinessQueryModel>
+    {
+    }
 }

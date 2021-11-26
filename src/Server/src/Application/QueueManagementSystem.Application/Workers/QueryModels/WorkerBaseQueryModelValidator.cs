@@ -2,8 +2,8 @@
 
 namespace QueueManagementSystem.Application.Workers.QueryModels
 {
-    public class WorkerBaseQueryModelValidator<TWorkerBaseQueryModel> : BaseAbstractValidation<TWorkerBaseQueryModel> where TWorkerBaseQueryModel : WorkerBaseQueryModel
+    public class WorkerBaseQueryModelValidator<TWorkerBaseQueryModel> : BaseAbstractValidation<TWorkerBaseQueryModel>
+        where TWorkerBaseQueryModel : WorkerBaseQueryModel
     {
-
     }
 }

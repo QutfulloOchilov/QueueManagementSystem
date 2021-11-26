@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Jobs.QueryModels
 {
-	public class JobBaseQueryModel : BaseQueryModel
-	{
-
-	}
+    public class JobBaseQueryModel : BaseQueryModel
+    {
+    }
 }

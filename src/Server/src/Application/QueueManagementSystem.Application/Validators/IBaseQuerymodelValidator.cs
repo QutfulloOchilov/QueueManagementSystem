@@ -2,5 +2,7 @@
 
 namespace QueueManagementSystem.Application.Validators
 {
-    public interface IBaseQuerymodelValidator : IValidator { }
+    public interface IBaseQuerymodelValidator : IValidator
+    {
+    }
 }

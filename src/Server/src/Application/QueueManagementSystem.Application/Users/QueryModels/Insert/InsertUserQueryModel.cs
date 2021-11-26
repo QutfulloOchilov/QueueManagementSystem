@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Users.QueryModels.Insert
 {
-	public class InsertUserQueryModel : UserQueryModel
-	{
-
-	}
+    public class InsertUserQueryModel : UserQueryModel
+    {
+    }
 }

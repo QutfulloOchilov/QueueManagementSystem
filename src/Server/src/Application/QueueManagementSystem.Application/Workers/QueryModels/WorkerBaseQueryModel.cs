@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Workers.QueryModels
 {
-	public class WorkerBaseQueryModel : BaseQueryModel
-	{
-
-	}
+    public class WorkerBaseQueryModel : BaseQueryModel
+    {
+    }
 }

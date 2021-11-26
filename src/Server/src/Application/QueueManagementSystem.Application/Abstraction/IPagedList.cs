@@ -1,5 +1,5 @@
-﻿using QueueManagementSystem.Domain.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using QueueManagementSystem.Domain.Interfaces;
 
 namespace QueueManagementSystem.Application.Abstraction
 {

@@ -4,12 +4,12 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Mapper
 {
-	public class BusinessProfile : MappingProfile
-	{
-		public BusinessProfile()
-		{
-			BuildMap<Business, BusinessViewModel>();
-			BuildMap<BusinessQueryModel, Business>();
-		}
-	}
+    public class BusinessProfile : MappingProfile
+    {
+        public BusinessProfile()
+        {
+            BuildMap<Business, BusinessViewModel>();
+            BuildMap<BusinessQueryModel, Business>();
+        }
+    }
 }

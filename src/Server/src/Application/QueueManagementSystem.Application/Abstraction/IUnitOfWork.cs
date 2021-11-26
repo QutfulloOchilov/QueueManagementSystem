@@ -13,7 +13,10 @@ namespace QueueManagementSystem.Application.Abstraction
         Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default);
         int ExecuteSqlCommand(string sql, params object[] parameters);
         Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters);
-        Task<int> ExecuteSqlCommandAsync(string sql, CancellationToken cancellationToken = default, params object[] parameters);
+
+        Task<int> ExecuteSqlCommandAsync(string sql, CancellationToken cancellationToken = default,
+            params object[] parameters);
+
         void Rollback();
     }
 }

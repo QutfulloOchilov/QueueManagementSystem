@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Feedbacks.QueryModels.Insert
 {
-	public class InsertFeedbackQueryModelValidator : FeedbackQueryModelValidator<InsertFeedbackQueryModel>
-	{
-
-	}
+    public class InsertFeedbackQueryModelValidator : FeedbackQueryModelValidator<InsertFeedbackQueryModel>
+    {
+    }
 }

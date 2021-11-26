@@ -2,8 +2,8 @@
 
 namespace QueueManagementSystem.Application.Workers.ViewModels
 {
-	public class FreeTimeViewModel
-	{
-		public IEnumerable<TimeIntervalViewModel> TimeIntervals { get; set; }
-	}
+    public class FreeTimeViewModel
+    {
+        public IEnumerable<TimeIntervalViewModel> TimeIntervals { get; set; }
+    }
 }

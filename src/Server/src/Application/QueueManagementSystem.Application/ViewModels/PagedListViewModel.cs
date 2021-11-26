@@ -1,5 +1,5 @@
-﻿using QueueManagementSystem.Application.ViewModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using QueueManagementSystem.Application.ViewModel;
 
 namespace QueueManagementSystem.Application.ViewModels
 {

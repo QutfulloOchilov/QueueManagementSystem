@@ -2,11 +2,7 @@
 
 namespace QueueManagementSystem.Application.Users.QueryModels.Insert
 {
-	public class InsertUserQueryModelValidator : UserQueryModelValidator<InsertUserQueryModel>
-	{
-		public InsertUserQueryModelValidator() : base()
-		{
-
-		}
-	}
+    public class InsertUserQueryModelValidator : UserQueryModelValidator<InsertUserQueryModel>
+    {
+    }
 }

@@ -3,8 +3,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-	public interface IFeedbackRepository : IRepository<Feedback>
-	{
-
-	}
+    public interface IFeedbackRepository : IRepository<Feedback>
+    {
+    }
 }

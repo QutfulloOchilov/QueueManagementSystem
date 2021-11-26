@@ -2,8 +2,9 @@
 
 namespace QueueManagementSystem.Application.Businesses.QueryModels
 {
-	public class BusinessBaseQueryModelValidator<TBusinessBaseQueryModel> : BaseAbstractValidation<TBusinessBaseQueryModel> where TBusinessBaseQueryModel : BusinessBaseQueryModel
-	{
-
-	}
+    public class
+        BusinessBaseQueryModelValidator<TBusinessBaseQueryModel> : BaseAbstractValidation<TBusinessBaseQueryModel>
+        where TBusinessBaseQueryModel : BusinessBaseQueryModel
+    {
+    }
 }

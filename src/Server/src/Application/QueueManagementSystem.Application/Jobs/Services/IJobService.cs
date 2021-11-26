@@ -5,7 +5,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Jobs.Services
 {
-	public interface IJobService : IService<Job, JobViewModel, JobBaseQueryModel>
-	{
-	}
+    public interface IJobService : IService<Job, JobViewModel, JobBaseQueryModel>
+    {
+    }
 }

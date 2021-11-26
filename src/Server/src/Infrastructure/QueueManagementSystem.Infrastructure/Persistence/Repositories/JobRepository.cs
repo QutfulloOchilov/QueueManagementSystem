@@ -4,12 +4,11 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
 {
-	public class JobRepository : BaseRepository<Job>, IJobRepository
-	{
-		public JobRepository(IContext _db)
-			: base(_db)
-		{
-
-		}
-	}
+    public class JobRepository : BaseRepository<Job>, IJobRepository
+    {
+        public JobRepository(IContext _db)
+            : base(_db)
+        {
+        }
+    }
 }

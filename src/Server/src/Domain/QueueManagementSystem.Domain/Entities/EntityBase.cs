@@ -1,11 +1,13 @@
-﻿using QueueManagementSystem.Domain.Interfaces;
-using System;
+﻿using System;
+using QueueManagementSystem.Domain.Interfaces;
 
 namespace QueueManagementSystem.Domain.Entities
 {
     public abstract class EntityBase : IEntity
     {
         private Guid _id;
+
+        public bool IsActive { get; set; }
 
         public Guid Id
         {
@@ -18,8 +20,6 @@ namespace QueueManagementSystem.Domain.Entities
             }
             set { _id = value; }
         }
-
-        public bool IsActive { get; set; }
 
         public string Title => ToString();
 

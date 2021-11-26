@@ -1,17 +1,14 @@
-﻿using QueueManagementSystem.Application.Abstraction;
-using QueueManagementSystem.Application.Repositories;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
-using System;
+﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using QueueManagementSystem.Application.Abstraction;
+using QueueManagementSystem.Application.Repositories;
 
 namespace QueueManagementSystem.Infrastructure.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IContext Context { get; }
-        public IServiceProvider ServiceProvider { get; }
-
         public UnitOfWork(IContext context, IServiceProvider serviceProvider)
         {
             Context = context;
@@ -19,14 +16,15 @@ namespace QueueManagementSystem.Infrastructure.Persistence
             ServiceProvider = serviceProvider;
         }
 
-        void BuildRepositories(IServiceProvider serviceProvider)
-        {
-            PersonRepository = serviceProvider.GetService<IUserRepository>();
-        }
+        public IServiceProvider ServiceProvider { get; }
 
         #region Properties
+
         public IUserRepository PersonRepository { get; private set; }
+
         #endregion
+
+        public IContext Context { get; }
 
         public int? CommandTimeout
         {
@@ -34,7 +32,18 @@ namespace QueueManagementSystem.Infrastructure.Persistence
             set => Context.CommandTimeout = value;
         }
 
+        public virtual void Rollback()
+        {
+            Context.UndoChanges();
+        }
+
+        void BuildRepositories(IServiceProvider serviceProvider)
+        {
+            PersonRepository = serviceProvider.GetService<IUserRepository>();
+        }
+
         #region SaveChanges
+
         public virtual int SaveChanges() => Context.SaveChanges();
 
         public Task<int> SaveChangesAsync()
@@ -46,13 +55,16 @@ namespace QueueManagementSystem.Infrastructure.Persistence
         {
             return Context.SaveChangesAsync(cancellationToken);
         }
+
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            return await this.SaveChangesAsync(cancellationToken) > 0 ? true : false;
+            return await SaveChangesAsync(cancellationToken) > 0 ? true : false;
         }
+
         #endregion
 
         #region ExecuteSqlCommand
+
         [Obsolete]
         public virtual int ExecuteSqlCommand(string sql, params object[] parameters)
         {
@@ -64,15 +76,12 @@ namespace QueueManagementSystem.Infrastructure.Persistence
             return Context.ExecuteSqlCommandAsync(sql, parameters);
         }
 
-        public virtual Task<int> ExecuteSqlCommandAsync(string sql, CancellationToken cancellationToken, params object[] parameters)
+        public virtual Task<int> ExecuteSqlCommandAsync(string sql, CancellationToken cancellationToken,
+            params object[] parameters)
         {
             return Context.ExecuteSqlCommandAsync(sql, cancellationToken, parameters);
         }
-        #endregion
 
-        public virtual void Rollback()
-        {
-            Context.UndoChanges();
-        }
+        #endregion
     }
 }

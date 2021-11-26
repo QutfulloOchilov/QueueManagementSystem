@@ -4,6 +4,5 @@ namespace QueueManagementSystem.Application.Persons
 {
     public class PersonBaseQueryModel : BaseQueryModel
     {
-
     }
 }

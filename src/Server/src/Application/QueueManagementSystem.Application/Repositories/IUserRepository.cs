@@ -5,6 +5,5 @@ namespace QueueManagementSystem.Application.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
-
     }
 }

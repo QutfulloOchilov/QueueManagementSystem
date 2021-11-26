@@ -1,10 +1,11 @@
-﻿using QueueManagementSystem.Domain.Entities;
-using System;
+﻿using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Attributes
 {
-    public class GenderConverter : System.Text.Json.Serialization.JsonConverter<Gender>
+    public class GenderConverter : JsonConverter<Gender>
     {
         public override Gender Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

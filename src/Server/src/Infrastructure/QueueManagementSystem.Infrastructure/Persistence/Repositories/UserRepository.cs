@@ -9,7 +9,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Repositories
         public UserRepository(IContext dbContext)
             : base(dbContext)
         {
-
         }
     }
 }

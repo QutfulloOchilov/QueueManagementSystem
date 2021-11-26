@@ -3,8 +3,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-	public interface IJobRepository : IRepository<Job>
-	{
-
-	}
+    public interface IJobRepository : IRepository<Job>
+    {
+    }
 }

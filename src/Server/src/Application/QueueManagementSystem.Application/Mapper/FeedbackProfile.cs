@@ -6,18 +6,18 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Mapper
 {
-	public class FeedbackProfile : MappingProfile
-	{
-		public FeedbackProfile()
-		{
-			BuildMap<Feedback, FeedbackQueryModel>();
-			BuildMap<Feedback, InsertFeedbackToBusinessQueryModel>();
-			BuildMap<Feedback, InsertFeedbackToWorkerQueryModel>();
-			BuildMap<Feedback, EditFeedbackQueryModel>();
+    public class FeedbackProfile : MappingProfile
+    {
+        public FeedbackProfile()
+        {
+            BuildMap<Feedback, FeedbackQueryModel>();
+            BuildMap<Feedback, InsertFeedbackToBusinessQueryModel>();
+            BuildMap<Feedback, InsertFeedbackToWorkerQueryModel>();
+            BuildMap<Feedback, EditFeedbackQueryModel>();
 
-			CreateMap<Feedback, FeedbackViewModel>()
-				.ForPath(f => f.UserFirstName, opt => opt.MapFrom(src => src.User.FirstName))
-				.ForPath(f => f.UserLastName, opt => opt.MapFrom(src => src.User.LastName));
-		}
-	}
+            CreateMap<Feedback, FeedbackViewModel>()
+                .ForPath(f => f.UserFirstName, opt => opt.MapFrom(src => src.User.FirstName))
+                .ForPath(f => f.UserLastName, opt => opt.MapFrom(src => src.User.LastName));
+        }
+    }
 }

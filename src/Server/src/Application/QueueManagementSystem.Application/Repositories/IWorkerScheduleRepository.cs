@@ -3,7 +3,7 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Repositories
 {
-	public interface IWorkerScheduleRepository : IRepository<WorkerSchedule>
-	{
-	}
+    public interface IWorkerScheduleRepository : IRepository<WorkerSchedule>
+    {
+    }
 }

@@ -1,42 +1,42 @@
-﻿using Microsoft.AspNetCore.Http;
-using QueueManagementSystem.API.Responses;
-using System;
+﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using QueueManagementSystem.API.Responses;
 
 namespace QueueManagementSystem.API.Middleware
 {
-	public class ExceptionMiddleware
-	{
-		private readonly RequestDelegate _next;
+    public class ExceptionMiddleware
+    {
+        private readonly RequestDelegate _next;
 
-		public ExceptionMiddleware(RequestDelegate next)
-		{
-			_next = next;
-		}
+        public ExceptionMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
 
-		public async Task InvokeAsync(HttpContext httpContext)
-		{
-			try
-			{
-				await _next(httpContext);
-			}
-			catch (Exception ex)
-			{
-				await HandleExceptionAsync(httpContext, ex);
-			}
-		}
+        public async Task InvokeAsync(HttpContext httpContext)
+        {
+            try
+            {
+                await _next(httpContext);
+            }
+            catch (Exception ex)
+            {
+                await HandleExceptionAsync(httpContext, ex);
+            }
+        }
 
-		private Task HandleExceptionAsync(HttpContext context, Exception exception)
-		{
-			context.Response.ContentType = "application/json";
-			context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-			return context.Response.WriteAsync(new ErrorResponse()
-			{
-				Status = context.Response.StatusCode,
-				ShortDescription = exception.Message
-			}.ToString());
-		}
-	}
+            return context.Response.WriteAsync(new ErrorResponse
+            {
+                Status = context.Response.StatusCode,
+                ShortDescription = exception.Message
+            }.ToString());
+        }
+    }
 }

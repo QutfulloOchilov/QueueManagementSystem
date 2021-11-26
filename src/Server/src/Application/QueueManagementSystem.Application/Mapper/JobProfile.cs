@@ -4,12 +4,12 @@ using QueueManagementSystem.Domain.Entities;
 
 namespace QueueManagementSystem.Application.Mapper
 {
-	public class JobProfile : MappingProfile
-	{
-		public JobProfile()
-		{
-			base.BuildMap<Job, JobViewModel>();
-			base.BuildMap<JobQueryModel, Job>();
-		}
-	}
+    public class JobProfile : MappingProfile
+    {
+        public JobProfile()
+        {
+            base.BuildMap<Job, JobViewModel>();
+            base.BuildMap<JobQueryModel, Job>();
+        }
+    }
 }

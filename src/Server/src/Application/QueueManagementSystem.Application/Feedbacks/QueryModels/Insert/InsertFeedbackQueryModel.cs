@@ -2,8 +2,7 @@
 
 namespace QueueManagementSystem.Application.Feedbacks.QueryModels.Insert
 {
-	public class InsertFeedbackQueryModel : FeedbackQueryModel
-	{
-
-	}
+    public class InsertFeedbackQueryModel : FeedbackQueryModel
+    {
+    }
 }

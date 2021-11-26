@@ -2,11 +2,7 @@
 
 namespace QueueManagementSystem.Application.Jobs.QueryModels.Insert
 {
-	public class InsertJobQueryModelValidator : JobQueryModelValidator<InsertJobQueryModel>
-	{
-		public InsertJobQueryModelValidator() : base()
-		{
-
-		}
-	}
+    public class InsertJobQueryModelValidator : JobQueryModelValidator<InsertJobQueryModel>
+    {
+    }
 }

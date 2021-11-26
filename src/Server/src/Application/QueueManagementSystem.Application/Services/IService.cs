@@ -1,17 +1,17 @@
-﻿using QueueManagementSystem.Application.QueryModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using QueueManagementSystem.Application.QueryModels;
 using QueueManagementSystem.Application.ViewModel;
 using QueueManagementSystem.Application.ViewModels;
 using QueueManagementSystem.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace QueueManagementSystem.Application.Services
 {
     public interface IService<TEntity, TViewModel, TQueryModel>
-         where TEntity : class, IEntity
-         where TViewModel : BaseViewModel
-         where TQueryModel : BaseQueryModel
+        where TEntity : class, IEntity
+        where TViewModel : BaseViewModel
+        where TQueryModel : BaseQueryModel
     {
         Task<IEnumerable<TViewModel>> GetAll();
         Task<PagedListViewModel<TViewModel>> GetPagedList(int pageIndex, int pageSize);

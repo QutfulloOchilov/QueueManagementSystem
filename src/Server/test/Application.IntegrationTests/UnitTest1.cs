@@ -7,7 +7,6 @@ namespace Application.IntegrationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

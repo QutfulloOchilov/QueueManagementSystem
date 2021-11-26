@@ -2,7 +2,7 @@
 
 namespace QueueManagementSystem.Application.Businesses.QueryModels.Insert
 {
-	public class InsertBusinessQueryModel : BusinessQueryModel
-	{
-	}
+    public class InsertBusinessQueryModel : BusinessQueryModel
+    {
+    }
 }
