@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Businesses.Services;
 using QueueManagementSystem.Application.Feedbacks.Services;
@@ -16,6 +15,8 @@ using QueueManagementSystem.Services;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using QueueManagementSystem.Infrastructure.Identity;
 
 namespace QueueManagementSystem.Infrastructure.IoC
 {
@@ -33,7 +34,27 @@ namespace QueueManagementSystem.Infrastructure.IoC
 
         private static void BuildIdentity(IServiceCollection services)
         {
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<QueueManagementSystemContext>();
 
+            services.AddIdentityServer()
+                .AddApiAuthorization<IdentityUser, QueueManagementSystemContext>();
+
+            services.Configure<JwtBearerOptions>(IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+                options =>
+                {
+                    options.Audience = "queueClients";
+                    options.Authority = "queueApi";
+                    options.TokenValidationParameters.RequireExpirationTime = true;
+                    options.TokenValidationParameters.ValidateAudience = true;
+                    options.TokenValidationParameters.ValidateIssuerSigningKey = true;
+                    options.TokenValidationParameters.IssuerSigningKey = SigningKeyProvider.GetSecurityKey();
+                });
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+            services.AddAuthorization();
         }
 
         private static void BuildContext(IServiceCollection service)

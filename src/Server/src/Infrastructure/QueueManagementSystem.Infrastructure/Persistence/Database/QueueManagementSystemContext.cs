@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Duende.IdentityServer.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Domain.Entities;
 using QueueManagementSystem.Domain.Interfaces;
@@ -13,18 +16,14 @@ using QueueManagementSystem.Infrastructure.Persistence.TableConfigurations;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Database
 {
-    public class QueueManagementSystemContext : DbContext, IContext
+    public class QueueManagementSystemContext : ApiAuthorizationDbContext<IdentityUser>, IContext
     {
-        public QueueManagementSystemContext(DbContextOptions<QueueManagementSystemContext> dbContextOptions)
-            : base(dbContextOptions)
+        public QueueManagementSystemContext(DbContextOptions<QueueManagementSystemContext> dbContextOptions
+            , IOptions<OperationalStoreOptions> operationalStoreOptions)
+            : base(dbContextOptions, operationalStoreOptions)
         {
             OptionBuilder = dbContextOptions;
         }
-
-        public QueueManagementSystemContext()
-        {
-        }
-
 
         public DbContextOptions OptionBuilder { get; }
 
@@ -145,15 +144,14 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var extension = optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>();
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-            string connectionString = configuration["ConnectionStrings:sqlServer"];
-            if (extension != null)
-                connectionString = extension.ConnectionString;
-
-            optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer(connectionString);
+            // IConfigurationRoot configuration = new ConfigurationBuilder()
+            //     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+            // string connectionString = configuration["ConnectionStrings:sqlServer"];
+            // if (extension != null)
+            //     connectionString = extension.ConnectionString;
+            //
+            // optionsBuilder.UseLazyLoadingProxies();
+            // optionsBuilder.use(connectionString);
         }
 
         /// <summary>
