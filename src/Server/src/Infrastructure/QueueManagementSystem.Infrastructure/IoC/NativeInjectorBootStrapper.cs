@@ -16,23 +16,25 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using QueueManagementSystem.Infrastructure.Identity;
 
 namespace QueueManagementSystem.Infrastructure.IoC
 {
     public static class NativeInjectorBootStrapper
     {
-        public static void RegisterServices(this IServiceCollection services)
+        public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
-            BuildContext(services);
+            BuildContext(services, configuration);
             BuildServices(services);
             BuildRepositories(services);
             BuildMappers(services);
-            BuildIdentity(services);
+            BuildIdentity(services, configuration);
             services.AddSingleton(services);
         }
 
-        private static void BuildIdentity(IServiceCollection services)
+        private static void BuildIdentity(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
@@ -57,9 +59,10 @@ namespace QueueManagementSystem.Infrastructure.IoC
             services.AddAuthorization();
         }
 
-        private static void BuildContext(IServiceCollection service)
+        private static void BuildContext(IServiceCollection service, IConfiguration configuration)
         {
-            service.AddDbContext<IContext, QueueManagementSystemContext>();
+            var connectionString = configuration.GetConnectionString("PostgreSql");
+            service.AddDbContext<IContext, QueueManagementSystemContext>(builder => builder.UseNpgsql(connectionString));
         }
 
         private static void BuildMappers(IServiceCollection builder)

@@ -29,7 +29,6 @@ namespace QueueManagementSystem
                     option.EnableEndpointRouting = false;
                     option.Filters.Add<ValidationFilter>();
                 })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(options =>
                     options.RegisterValidatorsFromAssemblyContaining<IBaseQuerymodelValidator>());
 
@@ -38,11 +37,8 @@ namespace QueueManagementSystem
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
             services.AddHttpsRedirection(op => op.RedirectStatusCode = 307);
-            services.RegisterServices();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "QueueManagementSystem", Version = "v1" });
-            });
+            services.RegisterServices(Configuration);
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "QueueManagementSystem", Version = "v1" }); });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
