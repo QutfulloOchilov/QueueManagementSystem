@@ -11,17 +11,17 @@ namespace QueueManagementSystem.Infrastructure.Identity
 {
     public class JwtTokenProvider : AuthenticatorTokenProvider<IdentityUser>, IJwtTokenProvider
     {
-        private readonly AuthOptions _authOptions;
+        private readonly AuthOptions authOptions;
 
         public JwtTokenProvider(IOptions<AuthOptions> authOptions)
         {
-            _authOptions = authOptions.Value;
+            this.authOptions = authOptions.Value;
         }
 
         public string GenerateAsync(IdentityUser identityUser, IEnumerable<string> roles)
         {
-            var audience = _authOptions.TokenAudience;
-            var lifetime = TimeSpan.FromMinutes(_authOptions.AccessTokenLifeTime);
+            var audience = authOptions.TokenAudience;
+            var lifetime = TimeSpan.FromMinutes(authOptions.AccessTokenLifeTime);
             return GenerateAccessToken(identityUser, audience, lifetime, roles);
         }
 
@@ -29,17 +29,15 @@ namespace QueueManagementSystem.Infrastructure.Identity
             IEnumerable<string> roles)
         {
             var now = DateTime.UtcNow;
-            var signingCredentials =
-                new SigningCredentials(SigningKeyProvider.GetSecurityKey(), SecurityAlgorithms.HmacSha256);
+            var signingCredentials = new SigningCredentials(SigningKeyProvider.GetSecurityKey(), SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, user.Id),
-                new(ClaimTypes.Name, user.UserName),
-                new(ClaimTypes.Email, user.Email)
+                new(ClaimTypes.Name, user.UserName)
             };
             roles.ForAll(role => claims.Add(new Claim(ClaimTypes.Role, role)));
             var securityToken = new JwtSecurityToken(
-                _authOptions.TokenIssuer,
+                authOptions.TokenIssuer,
                 audience,
                 notBefore: now,
                 claims: claims,

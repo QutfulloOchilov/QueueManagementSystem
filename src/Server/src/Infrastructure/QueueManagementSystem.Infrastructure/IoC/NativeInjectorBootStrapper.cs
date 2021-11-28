@@ -36,6 +36,9 @@ namespace QueueManagementSystem.Infrastructure.IoC
 
         private static void BuildIdentity(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
+            services.AddScoped<IIdentityService, IdentityService>();
+            
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<QueueManagementSystemContext>();
@@ -90,6 +93,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
             service.AddScoped<IJobService, JobService>();
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IFeedbackService, FeedbackService>();
+            service.AddScoped<IAuthorizationService, AuthorizationService>();
         }
     }
 }

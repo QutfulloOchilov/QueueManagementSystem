@@ -1,4 +1,4 @@
-namespace QueueManagementSystem.Domain.Comman
+namespace QueueManagementSystem.Domain.Common
 {
     public static class UserRoles
     {

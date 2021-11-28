@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj"/>
-        <ProjectReference Include="..\..\Domain\QueueManagementSystem.Domain\QueueManagementSystem.Domain.csproj"/>
+        <ProjectReference Include="..\..\Application\QueueManagementSystem.Application\QueueManagementSystem.Application.csproj" />
+        <ProjectReference Include="..\..\Domain\QueueManagementSystem.Domain\QueueManagementSystem.Domain.csproj" />
     </ItemGroup>
 
 </Project>

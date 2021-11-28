@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using QueueManagementSystem.Domain.Comman;
+using QueueManagementSystem.Domain.Common;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Database
 {

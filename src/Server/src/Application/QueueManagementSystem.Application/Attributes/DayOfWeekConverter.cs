@@ -17,6 +17,7 @@ namespace QueueManagementSystem.Application.Attributes
                 "Панчшанбе" => DayOfWeek.Thursday,
                 "Чумъа" => DayOfWeek.Friday,
                 "Шанбе" => DayOfWeek.Saturday,
+                _ => throw new ArgumentOutOfRangeException()
             };
         }
 
