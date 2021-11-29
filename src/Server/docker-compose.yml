@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  queueManagmen:
+  queueManagment:
     image: bohir/queuemanagment
     build:
       context: .
@@ -9,15 +9,16 @@ services:
     environment:
       - "UseInMemoryDatabase=false"
       - "ASPNETCORE_ENVIRONMENT=Development"      
-      - "ConnectionStrings__DefaultConnection=User ID=queueUser;Password=queuePass;Host=db;Port=5432;Database=queueManagment;Pooling=true;"
+      - "ConnectionStrings__PostgreSql=User ID=queueUser;Password=queuePass;Host=dbqueue;Port=5432;Database=queueManagment;Pooling=true;"
       - "IdentityServer__Key__Type=Development"
       - "ASPNETCORE_URLS=http://+:4300"
     ports:
       - "4300:4300"
     depends_on:
-      - db
+      - dbqueue
     restart: on-failure
-  db:
+    
+  dbqueue:
     image: "postgres"
     restart: always
     ports:
@@ -26,8 +27,10 @@ services:
       POSTGRES_PASSWORD: queuePass
       POSTGRES_USER: queueUser
 
-  adminer:
+  adminerqueue:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    depends_on:
+      - dbqueue

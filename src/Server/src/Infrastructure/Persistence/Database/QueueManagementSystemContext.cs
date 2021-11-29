@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Duende.IdentityServer.EntityFramework.Options;
@@ -137,11 +138,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
             return base.AddAsync(entity).AsTask();
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            return base.SaveChangesAsync(cancellationToken);
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -205,28 +201,8 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<EntityBase>();
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BusinessConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorkerScheduleConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FeedbackConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobConfiguration).Assembly);
-        }
-
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-            CancellationToken cancellationToken = default)
-        {
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
-
-        public override ValueTask DisposeAsync()
-        {
-            return base.DisposeAsync();
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

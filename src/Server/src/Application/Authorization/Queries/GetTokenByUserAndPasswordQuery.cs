@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Hosting.Server;
-
 namespace QueueManagementSystem.Application.Authorization.Queries
 {
     public class GetTokenByUserAndPasswordQuery

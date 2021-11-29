@@ -12,7 +12,7 @@ COPY ["src/API/QueueManagementSystem.API.csproj", "src/API/"]
 RUN dotnet restore "src/API/QueueManagementSystem.API.csproj"
 
 COPY src/ src/
-WORKDIR "/src/API"
+WORKDIR "/src/src/API"
 RUN dotnet build "QueueManagementSystem.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
