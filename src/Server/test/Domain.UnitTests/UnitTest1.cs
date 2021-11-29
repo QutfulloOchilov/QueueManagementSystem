@@ -7,7 +7,6 @@ namespace Domain.UnitTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

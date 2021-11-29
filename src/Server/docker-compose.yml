@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  queueManagment:
+    image: bohir/queuemanagment
+    build:
+      context: .
+      dockerfile: src/API/Dockerfile
+    environment:
+      - "UseInMemoryDatabase=false"
+      - "ASPNETCORE_ENVIRONMENT=Development"      
+      - "ConnectionStrings__PostgreSql=User ID=queueUser;Password=queuePass;Host=dbqueue;Port=5432;Database=queueManagment;Pooling=true;"
+      - "IdentityServer__Key__Type=Development"
+      - "ASPNETCORE_URLS=http://+:4300"
+    ports:
+      - "1312:4300"
+    depends_on:
+      - dbqueue
+    restart: on-failure
+    
+  dbqueue:
+    image: "postgres"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: queuePass
+      POSTGRES_USER: queueUser
+
+  adminerqueue:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - dbqueue
