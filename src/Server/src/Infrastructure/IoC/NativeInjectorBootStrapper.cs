@@ -38,7 +38,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
         {
             services.AddScoped<IJwtTokenProvider, JwtTokenProvider>();
             services.AddScoped<IIdentityService, IdentityService>();
-            
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<QueueManagementSystemContext>();
@@ -64,8 +64,15 @@ namespace QueueManagementSystem.Infrastructure.IoC
 
         private static void BuildContext(IServiceCollection service, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("PostgreSql");
-            service.AddDbContext<IContext, QueueManagementSystemContext>(builder => builder.UseNpgsql(connectionString));
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                service.AddDbContext<QueueManagementSystemContext>(builder => builder.UseInMemoryDatabase("QueueManagementSystemDB"));
+            }
+            else
+            {
+                var connectionString = configuration.GetConnectionString("PostgreSql");
+                service.AddDbContext<IContext, QueueManagementSystemContext>(builder => builder.UseNpgsql(connectionString));
+            }
         }
 
         private static void BuildMappers(IServiceCollection builder)
