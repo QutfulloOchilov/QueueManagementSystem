@@ -17,14 +17,16 @@ namespace QueueManagementSystem.Services
     {
         private readonly IJobDetailRepository jobDetailRepo;
         private readonly IMapper mapper;
+        private readonly IIdentityService identityService;
         private readonly IWorkerRepository workerRepo;
 
         public UserService(IUnitOfWork unitOfWork, IUserRepository repository, IWorkerRepository _workerRepo,
-            IJobDetailRepository _jobDetailRepo, IMapper _mapper)
+            IJobDetailRepository _jobDetailRepo, IMapper _mapper, IIdentityService identityService)
             : base(unitOfWork, repository, _mapper)
         {
             jobDetailRepo = _jobDetailRepo;
             mapper = _mapper;
+            this.identityService = identityService;
             workerRepo = _workerRepo;
         }
 

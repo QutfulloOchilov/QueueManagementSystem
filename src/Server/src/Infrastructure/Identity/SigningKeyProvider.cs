@@ -7,7 +7,7 @@ namespace QueueManagementSystem.Infrastructure.Identity
     {
         public static SymmetricSecurityKey GetSecurityKey()
         {
-            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this_is_deployer_secret"));
+            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this_is_the_secret_key"));
         }
     }
 }

@@ -21,14 +21,16 @@ namespace QueueManagementSystem.Services
         private readonly IFeedbackService feedbackService;
         private readonly IJobRepository jobRepo;
         private readonly IMapper mapper;
+        private readonly IIdentityService identityService;
 
         public WorkerService(IUnitOfWork unitOfWork, IWorkerRepository repository, IJobRepository _jobRepo,
-            IFeedbackService _feedbackService, IMapper _mapper)
+            IFeedbackService _feedbackService, IMapper _mapper, IIdentityService identityService)
             : base(unitOfWork, repository, _mapper)
         {
             feedbackService = _feedbackService;
             jobRepo = _jobRepo;
             mapper = _mapper;
+            this.identityService = identityService;
         }
 
         public async Task AddJob(AddJobQueryModel model)
