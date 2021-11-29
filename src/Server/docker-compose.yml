@@ -13,7 +13,7 @@ services:
       - "IdentityServer__Key__Type=Development"
       - "ASPNETCORE_URLS=http://+:4300"
     ports:
-      - "4300:4300"
+      - "1312:4300"
     depends_on:
       - dbqueue
     restart: on-failure

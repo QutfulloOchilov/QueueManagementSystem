@@ -15,7 +15,7 @@ namespace QueueManagementSystem.API.Controllers
             this.authorizationService = authorizationService;
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public Task<GetTokenByUserNameAndPasswordResult> Login(GetTokenByUserAndPasswordQuery query) =>
             authorizationService.GetTokenAsync(query);
     }
