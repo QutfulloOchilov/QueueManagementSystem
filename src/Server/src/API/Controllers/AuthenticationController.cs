@@ -4,7 +4,7 @@ using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Authorization.Queries;
 
 namespace QueueManagementSystem.API.Controllers
-{
+{  
     [Route("[controller]/[action]")]
     public class AuthenticationController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace QueueManagementSystem.API.Controllers
         }
 
         [HttpPost]
-        public Task<GetTokenByUserNameAndPasswordResult> Login(GetTokenByUserAndPasswordQuery query) =>
+        public Task<GetTokenByUserNameAndPasswordResult> Login([FromBody] GetTokenByUserAndPasswordQuery query) =>
             authorizationService.GetTokenAsync(query);
     }
 }
