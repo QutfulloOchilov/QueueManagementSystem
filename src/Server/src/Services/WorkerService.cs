@@ -10,6 +10,7 @@ using QueueManagementSystem.Application.Feedbacks.Services;
 using QueueManagementSystem.Application.Feedbacks.ViewModels;
 using QueueManagementSystem.Application.Repositories;
 using QueueManagementSystem.Application.Workers.QueryModels;
+using QueueManagementSystem.Application.Workers.QueryModels.Insert;
 using QueueManagementSystem.Application.Workers.Services;
 using QueueManagementSystem.Application.Workers.ViewModels;
 using QueueManagementSystem.Domain.Entities;
@@ -132,6 +133,24 @@ namespace QueueManagementSystem.Services
                 throw new BusinessLogicException("Feedback was not found with the provided Id.");
 
             return await feedbackService.Update(model);
+        }
+
+        public override async Task<WorkerViewModel> Create(WorkerBaseQueryModel newEntity)
+        {
+            if (newEntity is InsertWorkerQueryModel model)
+            {
+                var userAsync = await identityService.CreateUserAsync(model.Login, model.Email, model.Password);
+                if (!userAsync.Result.Succeeded)
+                {
+                    throw new InvalidOperationException("Identity user has not been created");
+                }
+
+                newEntity.Id = Guid.Parse(userAsync.UserId);
+                var workerViewModel = await base.Create(newEntity);
+                return workerViewModel;
+            }
+
+            throw new InvalidOperationException($"{newEntity} is not {nameof(InsertWorkerQueryModel)}");
         }
     }
 }

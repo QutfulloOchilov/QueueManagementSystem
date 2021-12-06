@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QueueManagementSystem.Application.Feedbacks.QueryModels;
 using QueueManagementSystem.Application.Feedbacks.QueryModels.Insert;
@@ -39,6 +40,7 @@ namespace QueueManagementSystem.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<WorkerViewModel>> Create([FromBody] InsertWorkerQueryModel model)
         {
             return Ok(await base.Create(model));

@@ -11,7 +11,7 @@ using QueueManagementSystem.Domain.Interfaces;
 
 namespace QueueManagementSystem.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller][action]")]
     [Authorize]
     public class
         BaseController<TEntity, TViewModel, TQueryModel, TService> : BaseEmptyController<TEntity, TViewModel,

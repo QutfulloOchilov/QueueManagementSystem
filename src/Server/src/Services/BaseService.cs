@@ -100,7 +100,7 @@ namespace QueueManagementSystem.Services
             return (true, "");
         }
 
-        protected async Task<TEntity> CreateAndMakeSureSaved(TQueryModel queryModel)
+        private async Task<TEntity> CreateAndMakeSureSaved(TQueryModel queryModel)
         {
             var newEntity = await CreateEntity(queryModel);
             await UnitOfWork.SaveChangesAsync();

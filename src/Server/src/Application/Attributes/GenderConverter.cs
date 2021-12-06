@@ -9,7 +9,7 @@ namespace QueueManagementSystem.Application.Attributes
     {
         public override Gender Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return reader.GetString() == "Мард" || reader.GetString() == "1" ? Gender.Male : Gender.Female;
+            return reader.GetInt32() == 1 ? Gender.Male : Gender.Female;
         }
 
         public override void Write(Utf8JsonWriter writer, Gender value, JsonSerializerOptions options)

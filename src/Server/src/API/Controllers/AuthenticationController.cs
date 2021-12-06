@@ -4,7 +4,7 @@ using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Application.Authorization.Queries;
 
 namespace QueueManagementSystem.API.Controllers
-{  
+{
     [Route("[controller]/[action]")]
     public class AuthenticationController : ControllerBase
     {

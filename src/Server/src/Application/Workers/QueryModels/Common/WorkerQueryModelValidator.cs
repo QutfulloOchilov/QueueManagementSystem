@@ -12,7 +12,6 @@ namespace QueueManagementSystem.Application.Workers.QueryModels.Common
             RuleFor(s => s.FirstName).NotEmpty().MinimumLength(4);
             RuleFor(s => s.Email).EmailAddress();
             RuleFor(s => s.PhoneNumber).NotEmpty().NotNull().Length(min: 9, max: 13);
-            RuleFor(s => s.BusinessId).NotEmpty();
             RuleFor(s => s.Birthdate.Year).GreaterThan(DateTime.Now.Year - 63);
         }
     }
