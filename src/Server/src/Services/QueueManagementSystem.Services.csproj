@@ -1,11 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<OutputType>Library</OutputType>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Application\QueueManagementSystem.Application.csproj" />
-      <ProjectReference Include="..\Domain\QueueManagementSystem.Domain.csproj" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Application\QueueManagementSystem.Application.csproj" />
+		<ProjectReference Include="..\Domain\QueueManagementSystem.Domain.csproj" />
+	</ItemGroup>
 </Project>
