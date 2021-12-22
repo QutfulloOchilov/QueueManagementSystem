@@ -49,10 +49,11 @@ namespace QueueManagementSystem.Infrastructure.IoC
             services.Configure<JwtBearerOptions>(IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
                 options =>
                 {
-                    options.Audience = "queueClients";
+                    options.Audience = "queueApi";
                     options.Authority = "queueApi";
                     options.TokenValidationParameters.RequireExpirationTime = true;
-                    options.TokenValidationParameters.ValidateAudience = true;
+                    options.TokenValidationParameters.ValidateAudience = false;
+                    options.TokenValidationParameters.ValidateIssuer = false;
                     options.TokenValidationParameters.ValidateIssuerSigningKey = true;
                     options.TokenValidationParameters.IssuerSigningKey = SigningKeyProvider.GetSecurityKey();
                 });

@@ -38,7 +38,10 @@ namespace QueueManagementSystem
 
             services.AddHttpsRedirection(op => op.RedirectStatusCode = 307);
             services.RegisterServices(Configuration);
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "QueueManagementSystem", Version = "v1" }); });
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "QueueManagementSystem", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

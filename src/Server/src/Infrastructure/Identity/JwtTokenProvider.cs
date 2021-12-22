@@ -37,8 +37,8 @@ namespace QueueManagementSystem.Infrastructure.Identity
             };
             roles.ForAll(role => claims.Add(new Claim(ClaimTypes.Role, role)));
             var securityToken = new JwtSecurityToken(
-                authOptions.TokenIssuer,
-                audience,
+                "queueApi",
+                "queueApi",
                 notBefore: now,
                 claims: claims,
                 expires: now.Add(lifetime),
