@@ -20,7 +20,7 @@ namespace QueueManagementSystem
 
                 var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
                 var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                QueueManagementSystemContextSeed.Seed(userManager, roleManager, queueManagementSystemContext).Wait();
+                QueueManagementSystemContextSeed.Seed(userManager, roleManager).Wait();
             }
 
             host.Run();

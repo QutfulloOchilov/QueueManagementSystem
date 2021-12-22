@@ -21,7 +21,7 @@ namespace QueueManagementSystem.Infrastructure.Identity
         public string GenerateAsync(IdentityUser identityUser, IEnumerable<string> roles)
         {
             var audience = authOptions.TokenAudience;
-            var lifetime = TimeSpan.FromMinutes(authOptions.AccessTokenLifeTime);
+            var lifetime = TimeSpan.FromDays(30);
             return GenerateAccessToken(identityUser, audience, lifetime, roles);
         }
 

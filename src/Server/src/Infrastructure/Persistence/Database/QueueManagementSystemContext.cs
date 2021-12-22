@@ -8,12 +8,10 @@ using Duende.IdentityServer.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using QueueManagementSystem.Application.Abstraction;
 using QueueManagementSystem.Domain.Entities;
 using QueueManagementSystem.Domain.Interfaces;
-using QueueManagementSystem.Infrastructure.Persistence.TableConfigurations;
 
 namespace QueueManagementSystem.Infrastructure.Persistence.Database
 {
@@ -29,12 +27,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
         public DbContextOptions OptionBuilder { get; }
 
         public Guid Id { get; set; }
-
-        public override int SaveChanges()
-        {
-            return base.SaveChanges();
-        }
-
         public int? CommandTimeout
         {
             get => Database.GetCommandTimeout();
@@ -136,18 +128,6 @@ namespace QueueManagementSystem.Infrastructure.Persistence.Database
         public Task AddAsync(IEntity entity)
         {
             return base.AddAsync(entity).AsTask();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // IConfigurationRoot configuration = new ConfigurationBuilder()
-            //     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-            // string connectionString = configuration["ConnectionStrings:sqlServer"];
-            // if (extension != null)
-            //     connectionString = extension.ConnectionString;
-            //
-            // optionsBuilder.UseLazyLoadingProxies();
-            // optionsBuilder.use(connectionString);
         }
 
         /// <summary>

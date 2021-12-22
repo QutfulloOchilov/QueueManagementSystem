@@ -52,12 +52,10 @@ namespace QueueManagementSystem
 
             app.UseMiddleware<ExceptionMiddleware>();
 
-            // app.UseHttpsRedirection();
-
-            app.UseAuthentication();
-
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
