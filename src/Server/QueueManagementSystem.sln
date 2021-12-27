@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F8899EFC-BC5F-40C1-87D9-526960021229}"
 EndProject
@@ -13,15 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "test\Domain.UnitTests\Domain.UnitTests.csproj", "{119E6DBF-167B-4CF0-A515-E3B51EA7FAB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueManagementSystem.Infrastructure", "src\Infrastructure\QueueManagementSystem.Infrastructure.csproj", "{F616617A-9833-48C2-91BC-37D996CD48C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueManagementSystem.Infrastructure", "src\Infrastructure\QueueManagementSystem.Infrastructure.csproj", "{F616617A-9833-48C2-91BC-37D996CD48C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueManagementSystem.Domain", "src\Domain\QueueManagementSystem.Domain.csproj", "{DA2ADF04-8A26-4401-8AF3-F9E9C6EC445E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueManagementSystem.Domain", "src\Domain\QueueManagementSystem.Domain.csproj", "{DA2ADF04-8A26-4401-8AF3-F9E9C6EC445E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueManagementSystem.Application", "src\Application\QueueManagementSystem.Application.csproj", "{63CD46C6-182D-4C4C-8C9E-3D5897DB718C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueManagementSystem.Application", "src\Application\QueueManagementSystem.Application.csproj", "{63CD46C6-182D-4C4C-8C9E-3D5897DB718C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueManagementSystem.Services", "src\Services\QueueManagementSystem.Services.csproj", "{D25C4BC4-4D62-4B46-BB8D-B8A2407640D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueManagementSystem.Services", "src\Services\QueueManagementSystem.Services.csproj", "{D25C4BC4-4D62-4B46-BB8D-B8A2407640D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueManagementSystem.API", "src\API\QueueManagementSystem.API.csproj", "{0C572C5F-7857-4C73-895C-8C4BFADDB399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueManagementSystem.API", "src\API\QueueManagementSystem.API.csproj", "{0C572C5F-7857-4C73-895C-8C4BFADDB399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.UnitTests", "test\Services.UnitTests\Services.UnitTests.csproj", "{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{0C572C5F-7857-4C73-895C-8C4BFADDB399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C572C5F-7857-4C73-895C-8C4BFADDB399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C572C5F-7857-4C73-895C-8C4BFADDB399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{63CD46C6-182D-4C4C-8C9E-3D5897DB718C} = {F8899EFC-BC5F-40C1-87D9-526960021229}
 		{D25C4BC4-4D62-4B46-BB8D-B8A2407640D2} = {F8899EFC-BC5F-40C1-87D9-526960021229}
 		{0C572C5F-7857-4C73-895C-8C4BFADDB399} = {F8899EFC-BC5F-40C1-87D9-526960021229}
+		{BBF5D515-9BEF-4B30-9279-5A0FFD2E43F1} = {1BE4CFA0-F496-4252-B2B0-947CFBDD1050}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F84B808-29A6-436A-8818-CBC4F6AD5AFB}

@@ -10,6 +10,5 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Application\QueueManagementSystem.Application.csproj" />
-		<ProjectReference Include="..\Domain\QueueManagementSystem.Domain.csproj" />
 	</ItemGroup>
 </Project>
