@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using QueueManagementSystem.Infrastructure.Identity;
+using QueueManagementSystem.Application.Categories.Services;
 
 namespace QueueManagementSystem.Infrastructure.IoC
 {
@@ -91,6 +92,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
             repository.AddScoped<IUserRepository, UserRepository>();
             repository.AddScoped<IJobDetailRepository, JobDetailRepository>();
             repository.AddScoped<IFeedbackRepository, FeedbackRepository>();
+            repository.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         private static void BuildServices(IServiceCollection service)
@@ -102,6 +104,7 @@ namespace QueueManagementSystem.Infrastructure.IoC
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IFeedbackService, FeedbackService>();
             service.AddScoped<IAuthorizationService, AuthorizationService>();
+            service.AddScoped<ICategoryService, CategoryService>();
         }
     }
 }
