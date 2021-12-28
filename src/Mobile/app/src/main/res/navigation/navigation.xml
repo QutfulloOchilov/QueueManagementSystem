@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_sign_in"
+        android:name="tj.behruz.queuemanagement.presentation.ui.SignInFragment"
+        android:label="SignInFragment"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right"
+        tools:layout="@layout/sign_in_fragment">
+        <action
+            android:id="@+id/action_nav_sign_in_to_signUpFragment"
+            app:destination="@id/nav_sign_up" />
+        <action
+            android:id="@+id/action_nav_sign_in_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_sign_up"
+        android:name="tj.behruz.queuemanagement.presentation.ui.SignUpFragment"
+        android:label="SignUpFragment"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right"
+        tools:layout="@layout/sign_up_fragment">
+        <action
+            android:id="@+id/action_nav_sign_up_to_nav_home"
+            app:destination="@id/nav_home"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_menu"
+        android:name="tj.behruz.queuemanagement.presentation.menu.MenuFragment"
+        android:label="MenuFragment"
+
+        tools:layout="@layout/menu_fragment">
+        <action
+            android:id="@+id/action_nav_menu_to_profileFragment"
+            app:destination="@id/nav_profile"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_nav_menu_to_notificationFragment"
+            app:destination="@id/nav_notification"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="tj.behruz.queuemanagement.presentation.history.HistoryFragment"
+        android:label="HistoryFragment"
+
+        tools:layout="@layout/history_fragment" />
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="tj.behruz.queuemanagement.presentation.favorite.FavoriteFragment"
+        android:label="Избранные"
+        tools:layout="@layout/favorite_fragment" />
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="tj.behruz.queuemanagement.presentation.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_nav_home_to_allSalonsFragment"
+            app:destination="@id/nav_salons"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_salons"
+        android:name="tj.behruz.queuemanagement.presentation.salons.AllSalonsFragment"
+        android:label="Все салоны"
+        tools:layout="@layout/all_salons_fragment">
+        <action
+            android:id="@+id/action_nav_salons_to_salonDescriptionFragment"
+            app:destination="@id/nav_salon_description"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_salon_description"
+        android:name="tj.behruz.queuemanagement.presentation.salons.SalonDescriptionFragment"
+        tools:layout="@layout/salon_description">
+        <action
+            android:id="@+id/action_nav_salon_description_to_scheduleFragment"
+            app:destination="@id/nav_schedule"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="tj.behruz.queuemanagement.presentation.schedule.ScheduleFragment"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right"
+        tools:layout="@layout/schedule_fragment" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="tj.behruz.queuemanagement.presentation.menu.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right"
+        tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="tj.behruz.queuemanagement.presentation.menu.notification.NotificationFragment"
+        android:label="NotificationFragment"
+        app:enterAnim="@anim/slide_in_from_right"
+        app:exitAnim="@anim/slide_out_to_left"
+        app:popEnterAnim="@anim/slide_in_from_left"
+        app:popExitAnim="@anim/slide_out_to_right"
+        tools:layout="@layout/notification_fragment" />
+</navigation>

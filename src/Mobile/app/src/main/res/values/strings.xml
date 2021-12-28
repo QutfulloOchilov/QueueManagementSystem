@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">QueueManagement</string>
+    <string name="sign_in_welcome">Добро пожаловать</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="sign_in">Вход</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="confirm_pass">Подтверждения пароля</string>
+    <string name="phone">Телефон</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorites</string>
+    <string name="history">History</string>
+    <string name="more">Ёще</string>
+    <string name="all_salons">Салоны</string>
+    <string name="services">Услуги</string>
+    <string name="comment">Comment</string>
+    <string name="send">Отправить</string>
+</resources>

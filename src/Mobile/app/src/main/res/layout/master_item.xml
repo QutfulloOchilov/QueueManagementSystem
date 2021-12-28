@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Bahromzoda Behruz 10/30/21, 2:30 PM.
+  ~ Copyright (c) 2021 . All rights reserved.
+  ~ Last modified 10/10/21, 2:43 PM
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/masterIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/master"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/masterName"
+            style="@style/categoryStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Пулотов Алишер"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/masterIcon"
+            app:layout_constraintTop_toTopOf="@+id/masterIcon" />
+
+    <TextView
+            android:id="@+id/favoriteSchedule"
+            style="@style/regular14Green"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Старшый Мастер"
+            app:layout_constraintEnd_toEndOf="@+id/masterName"
+            app:layout_constraintStart_toStartOf="@+id/masterName"
+            app:layout_constraintTop_toBottomOf="@+id/masterName" />
+
+    <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="#bdbdbd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/masterIcon" />
+
+    <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="5 рабочих дней "
+
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/favoriteSchedule"
+            app:layout_constraintTop_toBottomOf="@+id/favoriteSchedule" />
+
+    <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30 с"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#FB9857"
+            app:layout_constraintEnd_toEndOf="@+id/favoriteSchedule"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
