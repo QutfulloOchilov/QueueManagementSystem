@@ -1,3 +1,4 @@
+using System;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,5 +64,17 @@ namespace QueueManagementSystem
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+
+        #region Helper
+        void ConfigurationLogs()
+        {
+            // Get the environment which the application is running on 
+            var env=Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        }
+             
+        #endregion
     }
+
+    
 }
