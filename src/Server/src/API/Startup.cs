@@ -11,6 +11,7 @@ using QueueManagementSystem.API.Middleware;
 using QueueManagementSystem.API.ValidationFilter;
 using QueueManagementSystem.Application.Validators;
 using QueueManagementSystem.Infrastructure.IoC;
+using Serilog;
 
 namespace QueueManagementSystem
 {
@@ -62,19 +63,13 @@ namespace QueueManagementSystem
             app.UseIdentityServer();
             app.UseAuthorization();
 
+            app.UseSerilogRequestLogging();
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
-        #region Helper
-        void ConfigurationLogs()
-        {
-            // Get the environment which the application is running on 
-            var env=Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-        }
-             
-        #endregion
+      
     }
 
-    
+
 }
