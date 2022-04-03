@@ -16,6 +16,7 @@ namespace QueueManagementSystem
     {
         public static void Main(string[] args)
         {
+            //Test build
             SetupLogging();
 
             var host = CreateHostBuilder(args).Build();
